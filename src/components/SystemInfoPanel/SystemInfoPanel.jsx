@@ -12,6 +12,7 @@ import { useThreejs } from "@/contexts/threejsContext";
 import { MODE } from "@/constants/constants";
 import { sendShowObject } from "@/utils/message";
 import IntroModal from "@/components/IntroModal/IntroModal";
+import { useData } from "@/contexts/dataContext";
 
 const INFO = {
   消化道: {
@@ -34,6 +35,8 @@ const INFO = {
 const SystemInfoPanel = () => {
   const [openPanel, setOpenPanel] = useState(true);
   const [showModal, setShowModal] = useState(false);
+  const { data } = useData();
+  const [modalData, setModalData] = useState();
   const { mode } = useMode();
   const {
     state: { objects },
@@ -174,7 +177,16 @@ const SystemInfoPanel = () => {
                         handleCheckBox(system, INFO[system][organ])
                       }
                     />
-                    <span onClick={() => setShowModal(true)}>{organ}</span>
+                    <span
+                      onClick={() => {
+                        setShowModal(true);
+                        setModalData(
+                          data.find((i) => i.id === INFO[system][organ])
+                        );
+                      }}
+                    >
+                      {organ}
+                    </span>
                   </StyledOrganOption>
                 );
               })}
@@ -182,7 +194,7 @@ const SystemInfoPanel = () => {
           );
         })}
       </StyledInfoPanel>
-      {showModal && <IntroModal setShowModal={setShowModal} />}
+      {showModal && <IntroModal setShowModal={setShowModal} data={modalData} />}
     </>
   );
 };

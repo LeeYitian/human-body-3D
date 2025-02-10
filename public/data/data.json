@@ -1,0 +1,116 @@
+{
+  "Organ": [
+    {
+      "title": "肝臟",
+      "id": "liver",
+      "content": "分泌膽汁先儲存於膽囊，再注入小腸，可乳化脂質。"
+    },
+    {
+      "title": "胰臟",
+      "id": "pancreas",
+      "content": "分泌胰液，注入小腸，可分解醣類、蛋白質和脂質。"
+    },
+    {
+      "title": "膽囊",
+      "id": "gallbladder",
+      "content": "分泌膽汁先儲存於膽囊，再注入小腸，可乳化脂質。"
+    },
+    {
+      "title": "腎臟",
+      "id": "kidney",
+      "content": ""
+    },
+    {
+      "title": "脾臟",
+      "id": "spleen",
+      "content": ""
+    },
+    {
+      "title": "胃",
+      "id": "stomach",
+      "content": "呈囊袋狀，可容納食物。"
+    },
+    {
+      "title": "大腸",
+      "id": "largeIntestine",
+      "content": "吸收剩餘的水分，形成糞便。"
+    },
+    {
+      "title": "小腸",
+      "id": "smallIntestine",
+      "content": "消化食物的主要器官，吸收養分和大部分的水。"
+    },
+    {
+      "title": "盲腸",
+      "id": "cecum",
+      "content": "無特定功能，在消化系統中相對較短。"
+    }
+  ],
+  "System": [
+    {
+      "title": "口腔",
+      "content": "食物的入口，具有牙齒和舌頭。",
+      "id": "mouth"
+    },
+    {
+      "title": "咽",
+      "content": "調控食物進入食道。",
+      "id": "pharynx"
+    },
+    {
+      "title": "食道",
+      "content": "長管狀，可推進食物至胃。",
+      "id": "esophagus"
+    },
+    {
+      "title": "胃",
+      "content": "呈囊袋狀，可容納食物。",
+      "id": "stomach"
+    },
+    {
+      "title": "小腸",
+      "content": "消化食物的主要器官，吸收養分和大部分的水。",
+      "id": "smallIntestine"
+    },
+    {
+      "title": "大腸",
+      "content": "吸收剩餘的水分，形成糞便。",
+      "id": "largeIntestine"
+    },
+    {
+      "title": "肛門",
+      "content": "消化道的末端，糞便由此排出。",
+      "id": "anus"
+    },
+    {
+      "title": "唾腺",
+      "content": "分泌唾液，注入口腔，可初步分解澱粉。",
+      "id": "salivaryGland"
+    },
+    {
+      "title": "胃腺",
+      "content": "分泌胃液，注入胃，可初步分解蛋白質。",
+      "id": "gastricGland"
+    },
+    {
+      "title": "肝臟",
+      "content": "分泌膽汁先儲存於膽囊，再注入小腸，可乳化脂質。",
+      "id": "liver"
+    },
+    {
+      "title": "胰臟",
+      "content": "分泌胰液，注入小腸，可分解醣類、蛋白質和脂質。",
+      "id": "pancreas"
+    },
+    {
+      "title": "腸腺",
+      "content": "分泌腸液，注入小腸，能中和胃酸，協助分解醣類及蛋白質。",
+      "id": "intestinalGland"
+    },
+    {
+      "title": "消化系統",
+      "content": "1. 消化系統將攝入的食物分解成小分子，為人體吸收。\n2. 提供身體運作所需的營養與能量。",
+      "id": "systemIntro"
+    }
+  ]
+}

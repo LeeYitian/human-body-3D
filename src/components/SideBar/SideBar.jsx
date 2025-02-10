@@ -24,6 +24,7 @@ import { useEffect, useState } from "react";
 import CheckBox from "@/components/CheckBox/CheckBox";
 import { sendShowObject } from "@/utils/message";
 import IntroModal from "@/components/IntroModal/IntroModal";
+import { useData } from "@/contexts/dataContext";
 
 const titleBG = {
   [PATH.Organ]: "./assets/title_organ.png",
@@ -49,6 +50,8 @@ const SYSTEM = {
 const SideBar = () => {
   const { path, goto } = usePath();
   const { mode } = useMode();
+  const { data } = useData();
+  const [modalData, setModalData] = useState();
   const [sideBarOpen, setSideBarOpen] = useState(true);
   const [openPanel, setOpenPanel] = useState(true);
   const [showModal, setShowModal] = useState(false);
@@ -151,7 +154,14 @@ const SideBar = () => {
                       checked={organs[ORGAN[key]]}
                       updateState={() => handleCheckBox(ORGAN[key])}
                     />
-                    <span onClick={() => setShowModal(true)}>{key}</span>
+                    <span
+                      onClick={() => {
+                        setShowModal(true);
+                        setModalData(data.find((i) => i.id === ORGAN[key]));
+                      }}
+                    >
+                      {key}
+                    </span>
                   </StyledPanelOption>
                 ))}
               </StyledPanelContent>
@@ -208,15 +218,29 @@ const SideBar = () => {
       </StyledBG>
       {showModal && (
         <StyledSideArrow>
-          <Icon icon="ri:arrow-left-wide-fill" />
+          <Icon
+            icon="ri:arrow-left-wide-fill"
+            onClick={() => {
+              const currentIndex = data.findIndex((i) => i.id === modalData.id);
+              const nextIndex = currentIndex > 0 ? currentIndex - 1 : 0;
+              setModalData(data[Math.min(0, nextIndex)]);
+            }}
+          />
         </StyledSideArrow>
       )}
       {showModal && (
         <StyledSideArrow style={{ left: "92%" }}>
-          <Icon icon="ri:arrow-right-wide-fill" />
+          <Icon
+            icon="ri:arrow-right-wide-fill"
+            onClick={() => {
+              const currentIndex = data.findIndex((i) => i.id === modalData.id);
+              const nextIndex = currentIndex !== -1 ? currentIndex + 1 : 0;
+              setModalData(data[Math.min(data.length - 1, nextIndex)]);
+            }}
+          />
         </StyledSideArrow>
       )}
-      {showModal && <IntroModal setShowModal={setShowModal} />}
+      {showModal && <IntroModal setShowModal={setShowModal} data={modalData} />}
     </>
   );
 };

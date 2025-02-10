@@ -9,7 +9,8 @@ import {
 import { usePath } from "@/contexts/pathContext";
 import { PATH } from "@/constants/constants";
 import { useState } from "react";
-import IntroModal from "../IntroModal/IntroModal";
+import IntroModal from "@/components/IntroModal/IntroModal";
+import { useData } from "@/contexts/dataContext";
 
 const menu = {
   [PATH.Organ]: [
@@ -28,6 +29,8 @@ const Menu = ({ setMode }) => {
   const { path } = usePath();
   const [openMenu, setOpenMenu] = useState(true);
   const [showModal, setShowModal] = useState(false);
+  const { data } = useData();
+  const [modalData, setModalData] = useState();
 
   const handleClick = (id) => {
     switch (id) {
@@ -36,6 +39,7 @@ const Menu = ({ setMode }) => {
         break;
       case "intro":
         setShowModal(true);
+        setModalData(data.find((item) => item.id === "systemIntro"));
         break;
     }
   };
@@ -63,7 +67,7 @@ const Menu = ({ setMode }) => {
           {!openMenu && <StyledMenuText>教學箱</StyledMenuText>}
         </StyledBtnArea>
       </StyledContainer>
-      {showModal && <IntroModal setShowModal={setShowModal} />}
+      {showModal && <IntroModal setShowModal={setShowModal} data={modalData} />}
     </>
   );
 };

@@ -46,6 +46,7 @@ export const StyledHead = styled.div`
   gap: 1%;
   font-size: calc(2.5 * var(--vw));
   color: #54697a;
+  margin-bottom: 8%;
   & span {
     background-color: #6798ad;
     padding: 2%;
@@ -70,4 +71,5 @@ export const StyledContent = styled.div`
   width: 100%;
   font-size: calc(2.5 * var(--vw));
   color: #54697a;
+  white-space: pre-line;
 `;

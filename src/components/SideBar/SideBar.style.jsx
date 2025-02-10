@@ -155,6 +155,7 @@ export const StyledSideArrow = styled.div`
   height: 100%;
   width: 5%;
   left: 22%;
+  z-index: 2;
   & > svg {
     height: 100%;
     font-size: calc(10 * var(--vw));

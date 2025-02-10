@@ -10,9 +10,8 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { usePath } from "@/contexts/pathContext";
 import { PATH } from "@/constants/constants";
 
-const IntroModal = ({ setShowModal }) => {
+const IntroModal = ({ setShowModal, data }) => {
   const { path, goto } = usePath();
-
   return (
     <Draggable>
       <StyledContainer $imgSrc="./assets/modalBG.png" $path={path}>
@@ -21,7 +20,7 @@ const IntroModal = ({ setShowModal }) => {
           onClick={() => setShowModal(false)}
         />
         <StyledHead>
-          器官名稱
+          {data?.title || ""}
           {path === PATH.Organ && (
             <span
               onClick={() => {
@@ -43,7 +42,7 @@ const IntroModal = ({ setShowModal }) => {
             </span>
           )}
         </StyledHead>
-        <StyledContent>以下為器官介紹。</StyledContent>
+        <StyledContent>{data?.content || ""}</StyledContent>
         <StyledPageBtn>
           <Icon icon="bx:left-arrow" />
           <Icon icon="bxs:right-arrow" />
