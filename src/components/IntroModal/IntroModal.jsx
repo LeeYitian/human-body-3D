@@ -10,6 +10,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { usePath } from "@/contexts/pathContext";
 import { PATH } from "@/constants/constants";
 import { useState } from "react";
+import { sendUntargetOrgan } from "@/utils/message";
 
 const IntroModal = ({ setShowModal, data }) => {
   const { path, goto } = usePath();
@@ -19,7 +20,10 @@ const IntroModal = ({ setShowModal, data }) => {
       <StyledContainer $imgSrc="./assets/modalBG.png" $path={path}>
         <StyledCloseBtn
           $imgSrc="./assets/closeModalBtn.png"
-          onClick={() => setShowModal(false)}
+          onClick={() => {
+            setShowModal(false);
+            sendUntargetOrgan();
+          }}
         />
         <StyledHead>
           {data?.title || ""}

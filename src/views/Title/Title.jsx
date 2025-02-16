@@ -14,10 +14,6 @@ const Title = () => {
   const { goto } = usePath();
   const { switchMode } = useMode();
 
-  useEffect(() => {
-    switchMode(MODE["2D"]);
-  }, []);
-
   return (
     <StyledBG $imgSrc="./assets/titleBG.png">
       <StyledInstrucBtn

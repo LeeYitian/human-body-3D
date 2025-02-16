@@ -34,8 +34,11 @@ function abdominalPuzzleInit() {
 
 function puzzleClick(e) {
   dragTarget = e.currentTarget;
-  offsetX = e.stageX - dragTarget.x;
-  offsetY = e.stageY - dragTarget.y;
+  const points = gameContent.globalToLocal(e.stageX, e.stageY);
+  console.log("points", points);
+  offsetX = points.x - dragTarget.x;
+  offsetY = points.y - dragTarget.y;
+  console.log("offset", offsetX);
   e.currentTarget.addEventListener("pressmove", puzzleDragMove);
   e.currentTarget.addEventListener("pressup", puzzleDragUp);
 
@@ -44,11 +47,12 @@ function puzzleClick(e) {
 }
 
 function puzzleDragMove(e) {
-  console.log("move", dragTarget);
+  // console.log("move", dragTarget);
+  const points = gameContent.globalToLocal(e.stageX, e.stageY);
 
   if (!dragTarget) return;
-  dragTarget.x = e.stageX - offsetX;
-  dragTarget.y = e.stageY - offsetY;
+  dragTarget.x = points.x - offsetX;
+  dragTarget.y = points.y - offsetY;
 }
 
 function puzzleDragUp() {

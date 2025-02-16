@@ -1,11 +1,11 @@
 function targetOrgan(organ) {
+  targetedOrgan = organ.name.split("_")[0];
   bodyModel.children.forEach((child) => {
     if (child.totalFrames > 0) child.gotoAndStop(0);
   });
   organ.gotoAndStop(1);
 
   const pos = organ.localToLocal(organ.x, organ.y, zoomContent);
-  console.log("pos", pos);
   const center = {
     x: 1280 / 2,
     y: 720 / 2,

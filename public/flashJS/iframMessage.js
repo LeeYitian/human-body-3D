@@ -12,7 +12,6 @@ window.addEventListener("message", (e) => {
       break;
     case "showObject": {
       const object = bodyModel.getChildByName(e.data.value);
-      console.log("showObject", object, e.data.value);
       if (object) {
         object.visible = !object.visible;
       } else {
@@ -45,12 +44,22 @@ window.addEventListener("message", (e) => {
       bodyModelInit();
       break;
     case "targetOrgan": {
-      const organ = bodyModel.getChildByName(e.data.value);
+      const organ = bodyModel.children.find((child) =>
+        child.name.includes(e.data.value)
+      );
       if (organ) {
         targetOrgan(organ);
       }
       break;
     }
+    case "untargetOrgan":
+      targetedOrgan = null;
+      bodyModel.children.forEach((child) => {
+        if (child.totalFrames > 0) {
+          child.gotoAndStop(0);
+        }
+      });
+      break;
     case "loadGame": {
       loadGameAndInit(e.data.value);
     }

@@ -96,22 +96,18 @@ const SystemInfoPanel = () => {
       (item) => item === false
     );
 
-    const updateObjectsVisibility = (organs, shouldSelectAll) => {
-      if (mode === MODE["3D"]) {
-        Object.keys(objects)
-          .filter((key) => Object.keys(organs).includes(key))
-          .forEach((key) => {
-            objects[key].forEach((i) => (i.visible = shouldSelectAll));
-          });
-      } else {
-        const organKeys = Object.keys(organs);
-        shouldSelectAll
-          ? sendShowAllObjects(organKeys)
-          : sendHideAllObjects(organKeys);
-      }
-    };
-
-    updateObjectsVisibility(organs, shouldSelectAll);
+    if (mode === MODE["3D"]) {
+      Object.keys(objects)
+        .filter((key) => Object.keys(organs).includes(key))
+        .forEach((key) => {
+          objects[key].forEach((i) => (i.visible = shouldSelectAll));
+        });
+    } else {
+      const organKeys = Object.keys(organs);
+      shouldSelectAll
+        ? sendShowAllObjects(organKeys)
+        : sendHideAllObjects(organKeys);
+    }
 
     const temp = {};
     Object.keys(organs).forEach((organ) => {
@@ -125,9 +121,15 @@ const SystemInfoPanel = () => {
     if (!objects) return;
     if (mode === MODE["3D"]) {
       Object.keys(objects).forEach((key) => {
-        objects[key].visible = tractOrgans[key] ?? glandOrgans[key];
+        objects[key].forEach(
+          (i) => (i.visible = tractOrgans[key] ?? glandOrgans[key])
+        );
       });
     } else {
+      sendShowAllObjects([
+        ...Object.keys(tractOrgans),
+        ...Object.keys(glandOrgans),
+      ]);
       Object.keys(tractOrgans).forEach((organ) => {
         if (!tractOrgans[organ]) {
           sendShowObject(organ);
@@ -139,7 +141,7 @@ const SystemInfoPanel = () => {
         }
       });
     }
-  }, [mode, objects]);
+  }, [mode, objects, tractOrgans, glandOrgans]);
 
   return (
     <>

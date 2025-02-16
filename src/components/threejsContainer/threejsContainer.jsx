@@ -6,8 +6,7 @@ import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader";
 import { MODE } from "@/constants/constants";
 import { useThreejs } from "@/contexts/threejsContext";
 
-const ThreeJSCanvas = ({ mode }) => {
-  const threejsRef = useRef(null);
+const ThreeJSCanvas = ({ mode, threejsRef }) => {
   const { dispatch } = useThreejs();
 
   useEffect(() => {
@@ -30,7 +29,7 @@ const ThreeJSCanvas = ({ mode }) => {
     const canvas = document.querySelector("#threejsCanvas");
 
     const renderer = new THREE.WebGLRenderer({
-      canvas,
+      canvas: canvas,
       antialias: true,
       alpha: true,
     });
@@ -116,6 +115,7 @@ const ThreeJSCanvas = ({ mode }) => {
       window.removeEventListener("resize", setSize);
     };
   }, [mode]);
+
   return (
     <canvas
       id="threejsCanvas"

@@ -119,19 +119,20 @@ const SideBar = () => {
   };
 
   useEffect(() => {
-    if (!objects) return;
+    if (!objects || !organs) return;
     if (mode === MODE["3D"]) {
       Object.keys(objects).forEach((key) => {
-        objects[key].visible = organs[key];
+        objects[key].forEach((i) => (i.visible = organs[key]));
       });
     } else {
+      sendShowAllObjects(Object.keys(organs));
       Object.keys(organs).forEach((organ) => {
         if (!organs[organ]) {
           sendShowObject(organ);
         }
       });
     }
-  }, [mode, objects]);
+  }, [mode, objects, organs]);
 
   return (
     <>

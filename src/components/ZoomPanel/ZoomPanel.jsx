@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as THREE from "three";
 import {
   StyledContainer,
@@ -16,7 +16,7 @@ const ZoomPanel = ({ position }) => {
   const [flip, setFlip] = useState(false);
   const { mode } = useMode();
   const {
-    state: { camera, object, controls },
+    state: { camera, object },
   } = useThreejs();
 
   const clickZoom = (value, zoomType, input) => {
@@ -28,6 +28,10 @@ const ZoomPanel = ({ position }) => {
       return value;
     }
   };
+
+  useEffect(() => {
+    setInput(1);
+  }, [mode]);
 
   return (
     <StyledContainer $position={position}>

@@ -64,3 +64,10 @@ export const sendLoadGame = (gameName) => {
     value: gameName,
   });
 };
+
+export const sendUntargetOrgan = () => {
+  const iframeWindow = document.querySelector("iframe").contentWindow;
+  iframeWindow.postMessage({
+    type: "untargetOrgan",
+  });
+};

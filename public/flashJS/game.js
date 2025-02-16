@@ -12,6 +12,7 @@ let zoomContentXY = {
 };
 let zoomContent;
 let gameContent;
+let targetedOrgan;
 function gameInit() {
   stage.enableMouseOver(20);
   createjs.Touch.enable = function (stage, singleTouch, allowDefault) {
@@ -54,6 +55,12 @@ function bodyModelInit() {
   bodyModel.children.forEach((child) => {
     if (child.totalFrames > 0) {
       child.gotoAndStop(0);
+    }
+    if (child.name.includes(targetedOrgan)) {
+      child.gotoAndStop(1);
+    }
+    if (child.name.includes("lung")) {
+      child.visible = false;
     }
   });
 
