@@ -7,7 +7,7 @@ export const StyledContainer = styled.div`
   border-radius: 50px;
   // height: calc(8 * var(--vh));
   right: 1%;
-  bottom: 5%;
+  bottom: 13%;
   padding: 1% 2%;
   display: flex;
   align-items: center;

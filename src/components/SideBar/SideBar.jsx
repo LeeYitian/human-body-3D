@@ -1,3 +1,4 @@
+import * as THREE from "three";
 import { usePath } from "@/contexts/pathContext";
 import { useThreejs } from "@/contexts/threejsContext";
 import { useMode } from "@/contexts/modeContext";
@@ -25,6 +26,11 @@ import CheckBox from "@/components/CheckBox/CheckBox";
 import { sendShowObject } from "@/utils/message";
 import IntroModal from "@/components/IntroModal/IntroModal";
 import { useData } from "@/contexts/dataContext";
+import {
+  sendHideAllObjects,
+  sendShowAllObjects,
+  sendTargetOrgan,
+} from "@/utils/message";
 
 const titleBG = {
   [PATH.Organ]: "./assets/title_organ.png",
@@ -69,41 +75,46 @@ const SideBar = () => {
     body: true,
   });
   const {
-    state: { objects },
+    state: { objects, camera },
   } = useThreejs();
 
   const handleCheckBox = (organ) => {
-    setOrgans({
-      ...organs,
-      [organ]: !organs[organ],
-    });
     if (mode === MODE["3D"]) {
       const tempObj = objects[organ];
-      if (tempObj) {
-        tempObj.visible = !tempObj.visible;
+      if (tempObj.length) {
+        tempObj.forEach((i) => (i.visible = !i.visible));
       } else {
         alert("找不到" + organ);
+        return;
       }
     } else {
       sendShowObject(organ);
     }
+    setOrgans({
+      ...organs,
+      [organ]: !organs[organ],
+    });
   };
 
   const selecAll = () => {
+    const shouldSelectAll = Object.values(organs).some(
+      (organ) => organ === false
+    );
     let temp = {};
     Object.keys(organs).forEach((organ) => {
-      temp[organ] = !organs[organ];
+      temp[organ] = shouldSelectAll;
     });
     setOrgans(temp);
     if (mode === MODE["3D"]) {
       Object.keys(objects).forEach((key) => {
         if (!Object.keys(organs).includes(key)) return;
-        objects[key].visible = !objects[key].visible;
+        objects[key].forEach((i) => (i.visible = shouldSelectAll));
       });
     } else {
-      Object.keys(organs).forEach((organ) => {
-        sendShowObject(organ);
-      });
+      const _organs = Object.keys(organs);
+      shouldSelectAll
+        ? sendShowAllObjects(_organs)
+        : sendHideAllObjects(_organs);
     }
   };
 
@@ -158,6 +169,26 @@ const SideBar = () => {
                       onClick={() => {
                         setShowModal(true);
                         setModalData(data.find((i) => i.id === ORGAN[key]));
+                        sendTargetOrgan(ORGAN[key]);
+
+                        //3D 模型位置調整
+                        // const targetPosition = new THREE.Vector3();
+                        // objects[ORGAN[key]].getWorldPosition(targetPosition);
+
+                        // controls.target.set(
+                        //   targetPosition.x,
+                        //   targetPosition.y,
+                        //   targetPosition.z
+                        // );
+
+                        // 設置相機位置
+                        // camera.position.set(
+                        //   targetPosition.x,
+                        //   targetPosition.y,
+                        //   camera.position.z
+                        // );
+
+                        // camera.lookAt(targetPosition);
                       }}
                     >
                       {key}
@@ -217,13 +248,16 @@ const SideBar = () => {
         </StyledSwitch>
       </StyledBG>
       {showModal && (
-        <StyledSideArrow>
+        <StyledSideArrow style={{ left: sideBarOpen ? "22%" : "0%" }}>
           <Icon
             icon="ri:arrow-left-wide-fill"
             onClick={() => {
               const currentIndex = data.findIndex((i) => i.id === modalData.id);
-              const nextIndex = currentIndex > 0 ? currentIndex - 1 : 0;
-              setModalData(data[Math.min(0, nextIndex)]);
+              const nextIndex = currentIndex !== -1 ? currentIndex - 1 : 0;
+              setModalData(data[nextIndex < 0 ? data.length - 1 : nextIndex]);
+              sendTargetOrgan(
+                data[nextIndex < 0 ? data.length - 1 : nextIndex].id
+              );
             }}
           />
         </StyledSideArrow>
@@ -235,7 +269,10 @@ const SideBar = () => {
             onClick={() => {
               const currentIndex = data.findIndex((i) => i.id === modalData.id);
               const nextIndex = currentIndex !== -1 ? currentIndex + 1 : 0;
-              setModalData(data[Math.min(data.length - 1, nextIndex)]);
+              setModalData(data[nextIndex > data.length - 1 ? 0 : nextIndex]);
+              sendTargetOrgan(
+                data[nextIndex > data.length - 1 ? 0 : nextIndex].id
+              );
             }}
           />
         </StyledSideArrow>

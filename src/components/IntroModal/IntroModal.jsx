@@ -9,9 +9,11 @@ import {
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { usePath } from "@/contexts/pathContext";
 import { PATH } from "@/constants/constants";
+import { useState } from "react";
 
 const IntroModal = ({ setShowModal, data }) => {
   const { path, goto } = usePath();
+  const [contentPage, setContentPage] = useState(0);
   return (
     <Draggable>
       <StyledContainer $imgSrc="./assets/modalBG.png" $path={path}>
@@ -42,11 +44,23 @@ const IntroModal = ({ setShowModal, data }) => {
             </span>
           )}
         </StyledHead>
-        <StyledContent>{data?.content || ""}</StyledContent>
-        <StyledPageBtn>
-          <Icon icon="bx:left-arrow" />
-          <Icon icon="bxs:right-arrow" />
-        </StyledPageBtn>
+        <StyledContent>{data?.content[contentPage] || ""}</StyledContent>
+        {data?.content.length > 1 && (
+          <StyledPageBtn>
+            <Icon
+              icon="bx:left-arrow"
+              onClick={() => setContentPage(Math.max(0, contentPage - 1))}
+            />
+            <Icon
+              icon="bxs:right-arrow"
+              onClick={() =>
+                setContentPage(
+                  Math.min(data?.content.length - 1, contentPage + 1)
+                )
+              }
+            />
+          </StyledPageBtn>
+        )}
       </StyledContainer>
     </Draggable>
   );

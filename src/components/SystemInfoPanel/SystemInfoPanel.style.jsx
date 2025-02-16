@@ -4,7 +4,7 @@ import { BGBtn } from "@/App.style";
 export const StyledMainBtn = styled(BGBtn)`
   position: absolute;
   right: 1%;
-  bottom: 20%;
+  bottom: 28%;
   width: calc(6 * var(--vw));
   aspect-ratio: 1/1;
   display: ${(props) => (props.$open ? "none" : "block")};
@@ -22,7 +22,7 @@ export const StyledInfoPanel = styled.div`
   right: 2%;
   display: ${(props) => (props.$open ? "flex" : "none")};
   justify-content: space-between;
-  padding: 3% 1% 1%;
+  padding: 2% 1% 1%;
   z-index: 2;
   & ${StyledMainBtn} {
     top: -8%;
@@ -43,37 +43,40 @@ export const StyledSystemOption = styled.div`
   height: calc(5 * var(--vh));
   display: flex;
   align-items: center;
-  margin-bottom: 18%;
+  margin-bottom: 10%;
   & > span {
-    background-color: #6798ad;
-    border-radius: 8px;
-    border-bottom: 4px solid #5378a0;
+    // background-color: #6798ad;
+    // border-radius: 8px;
+    // border-bottom: 4px solid #5378a0;
     flex: 1;
-    text-align: center;
+    // text-align: center;
     cursor: pointer;
-    line-height: 2;
+    // line-height: 2;
     margin-left: 4%;
+    color: #54697a;
+    font-size: calc(2.5 * var(--vw));
   }
 `;
 
 export const StyledOrganOption = styled.div`
-  height: calc(4 * var(--vh));
-  width: 80%;
+  height: calc(5 * var(--vh));
+  width: 100%;
   align-self: center;
   display: flex;
   align-items: center;
-  margin-bottom: 12%;
+  margin-bottom: 10%;
   & > span {
-    color: #54697a;
-    background-color: #bdf4ed;
+    color: white;
+    background-color: #6798ad;
     border-radius: 8px;
-    border-bottom: 4px solid #76a59d;
-    flex: 1;
+    border-bottom: 4px solid #5378a0;
+    // flex: 1;
     margin-left: 4%;
     text-align: center;
     font-size: calc(2 * var(--vw));
     cursor: pointer;
     // line-height: 2;
-    height: calc(6 * var(--vh));
+    // height: calc(6 * var(--vh));
+    min-width: 65%;
   }
 `;

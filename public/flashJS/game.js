@@ -11,6 +11,7 @@ let zoomContentXY = {
   y: 0,
 };
 let zoomContent;
+let gameContent;
 function gameInit() {
   stage.enableMouseOver(20);
   createjs.Touch.enable = function (stage, singleTouch, allowDefault) {
@@ -55,4 +56,41 @@ function bodyModelInit() {
       child.gotoAndStop(0);
     }
   });
+
+  if (bodyModel.isGaming) {
+    bodyModel.children.forEach((child) => {
+      if (child.name) {
+        const name = child.name.split("_")[0];
+        if (checkedPuzzles.includes(name)) {
+          child.alpha = 1;
+        } else if (organs.includes(name)) {
+          child.alpha = 0.01;
+        }
+      }
+    });
+  }
+}
+
+function loadGameAndInit(gameName) {
+  console.log("loadGameAndInit", gameName);
+  gameContent = new _lib[gameName]();
+  game.removeChild(zoomContent);
+
+  zoomContent = gameContent.getChildByName("zoomContent");
+  zoomBaseSize = {
+    w: zoomContent.nominalBounds.width,
+    h: zoomContent.nominalBounds.height,
+  };
+  zoomContentXY = {
+    x: zoomContent.x,
+    y: zoomContent.y,
+  };
+  zoomContent.addEventListener("mousedown", areaDragDown);
+  game.addChild(gameContent);
+
+  switch (gameName) {
+    case "abdominal_puzzle":
+      abdominalPuzzleInit();
+      break;
+  }
 }

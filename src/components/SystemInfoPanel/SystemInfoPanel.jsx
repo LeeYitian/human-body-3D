@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import * as THREE from "three";
 import {
   StyledInfoPanel,
   StyledMainBtn,
@@ -13,6 +14,11 @@ import { MODE } from "@/constants/constants";
 import { sendShowObject } from "@/utils/message";
 import IntroModal from "@/components/IntroModal/IntroModal";
 import { useData } from "@/contexts/dataContext";
+import {
+  sendTargetOrgan,
+  sendHideAllObjects,
+  sendShowAllObjects,
+} from "@/utils/message";
 
 const INFO = {
   消化道: {
@@ -39,7 +45,7 @@ const SystemInfoPanel = () => {
   const [modalData, setModalData] = useState();
   const { mode } = useMode();
   const {
-    state: { objects },
+    state: { objects, camera, controls, object },
   } = useThreejs();
   const [tractOrgans, setTractOrgans] = useState({
     mouth: true,
@@ -59,6 +65,18 @@ const SystemInfoPanel = () => {
   });
 
   const handleCheckBox = (system, organ) => {
+    if (mode === MODE["3D"]) {
+      const tempObj = objects[organ];
+      if (tempObj.length) {
+        tempObj.forEach((obj) => (obj.visible = !obj.visible));
+      } else {
+        alert("找不到" + organ);
+        return;
+      }
+    } else {
+      sendShowObject(organ);
+    }
+
     if (system === "消化道") {
       setTractOrgans({
         ...tractOrgans,
@@ -70,55 +88,37 @@ const SystemInfoPanel = () => {
         [organ]: !glandOrgans[organ],
       });
     }
-
-    if (mode === MODE["3D"]) {
-      const tempObj = objects[organ];
-      if (tempObj) {
-        tempObj.visible = !tempObj.visible;
-      } else {
-        alert("找不到" + organ);
-      }
-    } else {
-      sendShowObject(organ);
-    }
   };
 
   const selecAll = (system) => {
-    if (system === "消化道") {
-      let temp = {};
-      Object.keys(tractOrgans).forEach((organ) => {
-        temp[organ] = !tractOrgans[organ];
-      });
-      setTractOrgans(temp);
+    const organs = system === "消化道" ? tractOrgans : glandOrgans;
+    const shouldSelectAll = Object.values(organs).some(
+      (item) => item === false
+    );
 
+    const updateObjectsVisibility = (organs, shouldSelectAll) => {
       if (mode === MODE["3D"]) {
-        Object.keys(objects).forEach((key) => {
-          if (!Object.keys(tractOrgans).includes(key)) return;
-          objects[key].visible = !objects[key].visible;
-        });
+        Object.keys(objects)
+          .filter((key) => Object.keys(organs).includes(key))
+          .forEach((key) => {
+            objects[key].forEach((i) => (i.visible = shouldSelectAll));
+          });
       } else {
-        Object.keys(tractOrgans).forEach((organ) => {
-          sendShowObject(organ);
-        });
+        const organKeys = Object.keys(organs);
+        shouldSelectAll
+          ? sendShowAllObjects(organKeys)
+          : sendHideAllObjects(organKeys);
       }
-    } else {
-      let temp = {};
-      Object.keys(glandOrgans).forEach((organ) => {
-        temp[organ] = !glandOrgans[organ];
-      });
-      setTractOrgans(temp);
+    };
 
-      if (mode === MODE["3D"]) {
-        Object.keys(objects).forEach((key) => {
-          if (!Object.keys(glandOrgans).includes(key)) return;
-          objects[key].visible = !objects[key].visible;
-        });
-      } else {
-        Object.keys(glandOrgans).forEach((organ) => {
-          sendShowObject(organ);
-        });
-      }
-    }
+    updateObjectsVisibility(organs, shouldSelectAll);
+
+    const temp = {};
+    Object.keys(organs).forEach((organ) => {
+      temp[organ] = shouldSelectAll;
+    });
+
+    system === "消化道" ? setTractOrgans(temp) : setGlandOrgans(temp);
   };
 
   useEffect(() => {
@@ -156,7 +156,7 @@ const SystemInfoPanel = () => {
         {Object.keys(INFO).map((system) => {
           const temp = system === "消化道" ? tractOrgans : glandOrgans;
           return (
-            <StyledPanelColumn>
+            <StyledPanelColumn key={system}>
               <StyledSystemOption>
                 <CheckBox
                   checked={Object.values(temp).every((v) => v)}
@@ -170,7 +170,7 @@ const SystemInfoPanel = () => {
                     ? tractOrgans[INFO[system][organ]]
                     : glandOrgans[INFO[system][organ]];
                 return (
-                  <StyledOrganOption>
+                  <StyledOrganOption key={organ}>
                     <CheckBox
                       checked={checked}
                       updateState={() =>
@@ -183,6 +183,28 @@ const SystemInfoPanel = () => {
                         setModalData(
                           data.find((i) => i.id === INFO[system][organ])
                         );
+                        // if (mode === MODE["2D"]) {
+                        //   sendTargetOrgan(INFO[system][organ]);
+                        // }
+                        // else {
+                        //   const targetPosition = new THREE.Vector3();
+                        //   objects[ORGAN[key]].getWorldPosition(targetPosition);
+
+                        //   // controls.target.set(
+                        //   //   targetPosition.x,
+                        //   //   targetPosition.y,
+                        //   //   targetPosition.z
+                        //   // );
+
+                        //   // 設置相機位置
+                        //   camera.position.set(
+                        //     targetPosition.x,
+                        //     targetPosition.y,
+                        //     camera.position.z
+                        //   );
+
+                        //   camera.lookAt(targetPosition);
+                        // }
                       }}
                     >
                       {organ}

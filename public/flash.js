@@ -3,7 +3,7 @@
 var p; // shortcut to reference prototypes
 var lib={};var ss={};var img={};
 lib.ssMetadata = [
-		{name:"flash_atlas_", frames: [[502,1082,491,448],[2670,0,500,483],[3109,1454,480,426],[0,1082,500,462],[2670,987,437,497],[2670,485,471,500],[3616,952,438,497],[3143,952,471,500],[1922,0,746,2750],[3923,0,72,72],[3997,0,72,72],[0,0,1920,1080],[2670,2542,461,314],[3534,1892,495,348],[328,2280,462,314],[1357,1876,496,348],[2670,1988,325,487],[2670,1486,360,500],[0,1948,326,488],[995,1523,360,500],[2997,2229,470,311],[444,1934,500,344],[3469,2242,470,311],[3032,1882,500,345],[995,1082,469,439],[3172,0,500,474],[3616,1451,469,439],[3172,476,500,474],[1466,1082,244,792],[1712,1082,190,500],[3674,0,247,792],[0,2438,190,500],[1234,2593,438,236],[3133,2555,473,272],[792,2593,440,236],[3608,2555,473,272],[946,2226,410,365],[0,1546,442,400],[1358,2226,410,365],[502,1532,443,400]]}
+		{name:"flash_atlas_", frames: [[975,1082,491,448],[3189,0,500,483],[3612,1463,480,426],[473,1082,500,462],[1468,1082,437,497],[3172,961,471,500],[3645,961,438,497],[0,1082,471,500],[1922,0,746,2750],[3940,0,72,72],[4014,0,72,72],[0,0,1920,1080],[936,2433,461,314],[1221,2083,495,348],[472,2415,462,314],[3114,1904,496,348],[3612,1891,325,487],[473,1546,360,500],[1583,1581,326,488],[1221,1581,360,500],[3584,2380,470,311],[2670,2254,500,344],[0,2395,470,311],[0,2048,500,345],[2670,1364,469,439],[3189,485,500,474],[3141,1463,469,439],[2670,888,500,474],[975,1532,244,792],[1399,2707,190,500],[3691,0,247,792],[1591,2707,190,500],[3587,2693,438,236],[1399,2433,473,272],[3145,2693,440,236],[2670,2600,473,272],[502,2048,410,365],[2670,1805,442,400],[3172,2254,410,365],[0,1584,443,400],[2670,0,517,886]]}
 ];
 
 
@@ -288,6 +288,13 @@ lib.ssMetadata = [
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(39);
 }).prototype = p = new cjs.Sprite();
+
+
+
+(lib.點陣圖2 = function() {
+	this.initialize(ss["flash_atlas_"]);
+	this.gotoAndStop(40);
+}).prototype = p = new cjs.Sprite();
 // helper functions:
 
 function mc_symbol_clone() {
@@ -487,6 +494,104 @@ p.nominalBounds = new cjs.Rectangle(-20,-45,118.3,81.6);
 p.nominalBounds = new cjs.Rectangle(-59,-41,118.2,81.3);
 
 
+(lib.拼拼樂_膽囊 = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{});
+
+	// 圖層_1
+	this.instance = new lib.膽_正面();
+	this.instance.setTransform(0,0,0.3238,0.3238);
+
+	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
+
+	this._renderFirstFrame();
+
+}).prototype = getMCSymbolPrototype(lib.拼拼樂_膽囊, new cjs.Rectangle(0,0,132.8,118.2), null);
+
+
+(lib.拼拼樂_胰臟 = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{});
+
+	// 圖層_1
+	this.instance = new lib.胰臟_正面();
+	this.instance.setTransform(0,0,0.3238,0.3238);
+
+	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
+
+	this._renderFirstFrame();
+
+}).prototype = getMCSymbolPrototype(lib.拼拼樂_胰臟, new cjs.Rectangle(0,0,141.8,76.4), null);
+
+
+(lib.拼拼樂_胃 = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{});
+
+	// 圖層_1
+	this.instance = new lib.胃_正面();
+	this.instance.setTransform(0,0,0.3238,0.3238);
+
+	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
+
+	this._renderFirstFrame();
+
+}).prototype = getMCSymbolPrototype(lib.拼拼樂_胃, new cjs.Rectangle(0,0,79,256.5), null);
+
+
+(lib.拼拼樂_肝臟 = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{});
+
+	// 圖層_1
+	this.instance = new lib.肝_正面();
+	this.instance.setTransform(0,0,0.3238,0.3238);
+
+	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
+
+	this._renderFirstFrame();
+
+}).prototype = getMCSymbolPrototype(lib.拼拼樂_肝臟, new cjs.Rectangle(0,0,152.2,100.7), null);
+
+
+(lib.拼拼樂_橫膈膜 = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{});
+
+	// 圖層_1
+	this.instance = new lib.橫膈膜_正面();
+	this.instance.setTransform(0,0,0.3238,0.3238);
+
+	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
+
+	this._renderFirstFrame();
+
+}).prototype = getMCSymbolPrototype(lib.拼拼樂_橫膈膜, new cjs.Rectangle(0,0,149.3,101.7), null);
+
+
+(lib.拼拼樂_大腸 = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{});
+
+	// 圖層_1
+	this.instance = new lib.大腸_正面();
+	this.instance.setTransform(0,0,0.3238,0.3238);
+
+	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
+
+	this._renderFirstFrame();
+
+}).prototype = getMCSymbolPrototype(lib.拼拼樂_大腸, new cjs.Rectangle(0,0,141.5,160.9), null);
+
+
+(lib.拼拼樂_小腸 = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{});
+
+	// 圖層_1
+	this.instance = new lib.小腸_正面();
+	this.instance.setTransform(0,0,0.3238,0.3238);
+
+	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
+
+	this._renderFirstFrame();
+
+}).prototype = getMCSymbolPrototype(lib.拼拼樂_小腸, new cjs.Rectangle(0,0,159,145.1), null);
+
+
 (lib.口腔反 = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
@@ -649,10 +754,6 @@ p.nominalBounds = new cjs.Rectangle(-67,-65,134.9,129.6);
 	this.initialize(mode,startPosition,loop,{});
 
 	// 圖層_1
-	this.largeIntestine = new lib.大腸正();
-	this.largeIntestine.name = "largeIntestine";
-	this.largeIntestine.setTransform(-0.1,-86.25,0.9696,0.9696);
-
 	this.lung = new lib.肺正();
 	this.lung.name = "lung";
 	this.lung.setTransform(-0.2,-323.65,0.9696,0.9696);
@@ -665,25 +766,29 @@ p.nominalBounds = new cjs.Rectangle(-67,-65,134.9,129.6);
 	this.liver.name = "liver";
 	this.liver.setTransform(-20.5,-221.5,0.9696,0.9696);
 
-	this.diaphragm = new lib.橫膈膜正();
-	this.diaphragm.name = "diaphragm";
-	this.diaphragm.setTransform(-1.75,-221.15,0.2903,0.2903);
+	this.gallbladder = new lib.膽囊正();
+	this.gallbladder.name = "gallbladder";
+	this.gallbladder.setTransform(-22.65,-208.6,0.0752,0.0752,0,0,0,0,0.7);
+
+	this.smallIntestine = new lib.小腸正();
+	this.smallIntestine.name = "smallIntestine";
+	this.smallIntestine.setTransform(-1,-96.35,0.9696,0.9696);
+
+	this.largeIntestine = new lib.大腸正();
+	this.largeIntestine.name = "largeIntestine";
+	this.largeIntestine.setTransform(-0.1,-86.25,0.9696,0.9696);
 
 	this.stomach = new lib.胃正();
 	this.stomach.name = "stomach";
 	this.stomach.setTransform(9.3,-323.65,0.9696,0.9696);
 
-	this.gallbladder = new lib.膽囊正();
-	this.gallbladder.name = "gallbladder";
-	this.gallbladder.setTransform(-22.65,-208.6,0.0752,0.0752,0,0,0,0,0.7);
-
 	this.pancreas = new lib.胰臟正();
 	this.pancreas.name = "pancreas";
 	this.pancreas.setTransform(-3.25,-180.95,0.9696,0.9696);
 
-	this.smallIntestine = new lib.小腸正();
-	this.smallIntestine.name = "smallIntestine";
-	this.smallIntestine.setTransform(-1,-96.35,0.9696,0.9696);
+	this.diaphragm = new lib.橫膈膜正();
+	this.diaphragm.name = "diaphragm";
+	this.diaphragm.setTransform(-1.75,-221.15,0.2903,0.2903);
 
 	this.gallbladder_1 = new lib.膽囊反();
 	this.gallbladder_1.name = "gallbladder_1";
@@ -721,7 +826,7 @@ p.nominalBounds = new cjs.Rectangle(-67,-65,134.9,129.6);
 	this.smallIntestine_1.name = "smallIntestine_1";
 	this.smallIntestine_1.setTransform(-0.5,-96.85,0.9696,0.9696);
 
-	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.smallIntestine},{t:this.pancreas},{t:this.gallbladder},{t:this.stomach},{t:this.diaphragm},{t:this.liver},{t:this.mouth},{t:this.lung},{t:this.largeIntestine}]}).to({state:[{t:this.smallIntestine_1},{t:this.stomach_1},{t:this.largeIntestine_1},{t:this.pancreas_1},{t:this.diaphragm_1},{t:this.mouth_1},{t:this.lung_1},{t:this.liver_1},{t:this.gallbladder_1}]},1).wait(1));
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.diaphragm},{t:this.pancreas},{t:this.stomach},{t:this.largeIntestine},{t:this.smallIntestine},{t:this.gallbladder},{t:this.liver},{t:this.mouth},{t:this.lung}]}).to({state:[{t:this.smallIntestine_1},{t:this.stomach_1},{t:this.largeIntestine_1},{t:this.pancreas_1},{t:this.diaphragm_1},{t:this.mouth_1},{t:this.lung_1},{t:this.liver_1},{t:this.gallbladder_1}]},1).wait(1));
 
 	// BODY_png
 	this.body = new lib.人體輪廓();
@@ -736,36 +841,117 @@ p.nominalBounds = new cjs.Rectangle(-67,-65,134.9,129.6);
 p.nominalBounds = new cjs.Rectangle(-182.8,-673.9,365.70000000000005,1347.9);
 
 
-(lib.縮放層 = function(mode,startPosition,loop) {
+(lib.腹腔拼拼樂縮放層 = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
-	// 圖層_2
+	// 圖層_1
 	this.bodyModel = new lib.人體_正反();
 	this.bodyModel.name = "bodyModel";
-	this.bodyModel.setTransform(609.1,692.6);
+	this.bodyModel.setTransform(471.85,692.6);
 
 	this.timeline.addTween(cjs.Tween.get(this.bodyModel).wait(1));
 
-	// 圖層_1
+	// 圖層_2
 	this.shape = new cjs.Shape();
-	this.shape.graphics.f("rgba(255,255,255,0.008)").s().p("Ehj6A4RMAAAhwhMDH1AAAMAAABwhg");
-	this.shape.setTransform(639.475,360.1);
+	this.shape.graphics.f("rgba(255,255,255,0.008)").s().p("EhmVA4QMAAAhwfMDMrAAAMAAABwfg");
+	this.shape.setTransform(655,360);
 
 	this.timeline.addTween(cjs.Tween.get(this.shape).wait(1));
 
 	this._renderFirstFrame();
 
-}).prototype = getMCSymbolPrototype(lib.縮放層, new cjs.Rectangle(0,0,1279,1366.6), null);
+}).prototype = getMCSymbolPrototype(lib.腹腔拼拼樂縮放層, new cjs.Rectangle(0,0,1310,1366.6), null);
+
+
+(lib.abdominal_puzzle = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{});
+
+	// 器官
+	this.puzzle_smallIntestine = new lib.拼拼樂_小腸();
+	this.puzzle_smallIntestine.name = "puzzle_smallIntestine";
+	this.puzzle_smallIntestine.setTransform(1159.5,200.5,1,1,0,0,0,79.5,72.5);
+
+	this.puzzle_liver = new lib.拼拼樂_肝臟();
+	this.puzzle_liver.name = "puzzle_liver";
+	this.puzzle_liver.setTransform(1163.1,412.4,1,1,0,0,0,76.1,50.4);
+
+	this.puzzle_pancreas = new lib.拼拼樂_胰臟();
+	this.puzzle_pancreas.name = "puzzle_pancreas";
+	this.puzzle_pancreas.setTransform(1147.9,494.2,1,1,0,0,0,70.9,38.2);
+
+	this.puzzle_stomach = new lib.拼拼樂_胃();
+	this.puzzle_stomach.name = "puzzle_stomach";
+	this.puzzle_stomach.setTransform(1006.5,479.2,1,1,0,0,0,39.5,128.2);
+
+	this.puzzle_gallbladder = new lib.拼拼樂_膽囊();
+	this.puzzle_gallbladder.name = "puzzle_gallbladder";
+	this.puzzle_gallbladder.setTransform(884.3,454.1,1,1,0,0,0,66.3,59.1);
+
+	this.puzzle_largeIntestine = new lib.拼拼樂_大腸();
+	this.puzzle_largeIntestine.name = "puzzle_largeIntestine";
+	this.puzzle_largeIntestine.setTransform(975.8,270.5,1,1,0,0,0,70.8,80.5);
+
+	this.puzzle_diaphragm = new lib.拼拼樂_橫膈膜();
+	this.puzzle_diaphragm.name = "puzzle_diaphragm";
+	this.puzzle_diaphragm.setTransform(892.6,118.8,1,1,0,0,0,74.6,50.8);
+
+	this.instance = new lib.點陣圖2();
+	this.instance.setTransform(793,-70);
+
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.instance},{t:this.puzzle_diaphragm},{t:this.puzzle_largeIntestine},{t:this.puzzle_gallbladder},{t:this.puzzle_stomach},{t:this.puzzle_pancreas},{t:this.puzzle_liver},{t:this.puzzle_smallIntestine}]}).wait(1));
+
+	// 圖層_1
+	this.zoomContent = new lib.腹腔拼拼樂縮放層();
+	this.zoomContent.name = "zoomContent";
+	this.zoomContent.setTransform(655,683.2,1,1,0,0,0,655,683.2);
+
+	this.timeline.addTween(cjs.Tween.get(this.zoomContent).wait(1));
+
+	// BG
+	this.shape = new cjs.Shape();
+	var sprImg_shape = cjs.SpriteSheetUtils.extractFrame(ss["flash_atlas_"],11);
+	sprImg_shape.onload = function(){
+		this.shape.graphics.bf(sprImg_shape, null, new cjs.Matrix2D(0.667,0,0,0.667,-640,-360)).s().p("Ehj/A4QMAAAhwfMDH/AAAMAAABwfg")
+	}.bind(this);
+	this.shape.setTransform(640,360);
+
+	this.timeline.addTween(cjs.Tween.get(this.shape).wait(1));
+
+	this._renderFirstFrame();
+
+}).prototype = getMCSymbolPrototype(lib.abdominal_puzzle, new cjs.Rectangle(0,-70,1310,1436.6), null);
+
+
+(lib.縮放圖層 = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{});
+
+	// 圖層_1
+	this.bodyModel = new lib.人體_正反();
+	this.bodyModel.name = "bodyModel";
+	this.bodyModel.setTransform(609.2,691.85);
+
+	this.timeline.addTween(cjs.Tween.get(this.bodyModel).wait(1));
+
+	// 圖層_2
+	this.shape = new cjs.Shape();
+	this.shape.graphics.f("rgba(255,255,255,0.008)").s().p("EhkAA4TMAAAhwlMDIBAAAMAAABwlg");
+	this.shape.setTransform(640.125,360.1);
+
+	this.timeline.addTween(cjs.Tween.get(this.shape).wait(1));
+
+	this._renderFirstFrame();
+
+}).prototype = getMCSymbolPrototype(lib.縮放圖層, new cjs.Rectangle(0.1,-0.1,1280.1000000000001,1365.8999999999999), null);
 
 
 // stage content:
 (lib.index = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
-	// 圖層_1
-	this.zoomContent = new lib.縮放層();
+	// 圖層_2
+	this.zoomContent = new lib.縮放圖層();
 	this.zoomContent.name = "zoomContent";
-	this.zoomContent.setTransform(639.25,361.4,1,1,0,0,0,639.5,360.1);
+	this.zoomContent.setTransform(640.2,683.65,1,1,0,0,0,640.3,682.9);
 
 	this.timeline.addTween(cjs.Tween.get(this.zoomContent).wait(1));
 
@@ -773,16 +959,16 @@ p.nominalBounds = new cjs.Rectangle(-182.8,-673.9,365.70000000000005,1347.9);
 	this.shape = new cjs.Shape();
 	var sprImg_shape = cjs.SpriteSheetUtils.extractFrame(ss["flash_atlas_"],11);
 	sprImg_shape.onload = function(){
-		this.shape.graphics.bf(sprImg_shape, null, new cjs.Matrix2D(0.667,0,0,0.667,-640,-360)).s().p("Ehj/A4QMAAAhwfMDH/AAAMAAABwfg")
+		this.shape.graphics.bf(sprImg_shape, null, new cjs.Matrix2D(0.667,0,0,0.897,-640,-484.5)).s().p("Ehj/BLrMAAAiXVMDH/AAAMAAACXVg")
 	}.bind(this);
-	this.shape.setTransform(638.8,360.65);
+	this.shape.setTransform(638.8,484.975);
 
 	this.timeline.addTween(cjs.Tween.get(this.shape).wait(1));
 
 	this._renderFirstFrame();
 
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(638.8,264.6,640,1103.3000000000002);
+p.nominalBounds = new cjs.Rectangle(638.8,264.6,641.3,1102);
 // library properties:
 lib.properties = {
 	id: '074FAE908D0445448BBA071FB36355F2',

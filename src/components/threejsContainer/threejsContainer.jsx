@@ -38,6 +38,7 @@ const ThreeJSCanvas = ({ mode }) => {
     mainContainer.appendChild(renderer.domElement);
 
     const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableZoom = false;
     dispatch({ type: "setControls", payload: controls });
 
     // 1. 環境光，確保所有地方都有基本照明
@@ -69,13 +70,21 @@ const ThreeJSCanvas = ({ mode }) => {
     fbxLoader.load(
       "./models/export/test_all.FBX",
       (object) => {
-        // object.scale.set(0.8, 0.8, 0.8);
-        console.log(object.children);
+        // object.scale.set(0.8, 0.8, 0.8)
+
+        object.traverse((child) => {
+          // console.log("child", child.name);
+          if (child.name.includes("Lung")) {
+            child.visible = false;
+          }
+        });
         const box = new THREE.Box3().setFromObject(object);
         const size = box.getSize(new THREE.Vector3()).length();
         const center = box.getCenter(new THREE.Vector3());
 
         object.position.sub(center); // 讓模型居中
+
+        camera.fov = 35;
 
         camera.position.z = size / 1.5; // 根據模型大小調整相機距離
         dispatch({ type: "setObjects", payload: object.children });
@@ -114,6 +123,7 @@ const ThreeJSCanvas = ({ mode }) => {
         position: "absolute",
         top: "0",
         display: mode === MODE["3D"] ? "block" : "none",
+        zIndex: "1",
       }}
     ></canvas>
   );

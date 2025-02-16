@@ -1,12 +1,13 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
 import { setSize } from "@/utils/windowSize";
-import { MODE, PATH } from "@/constants/constants";
+import { PATH } from "@/constants/constants";
 import Title from "@/views/Title/Title";
 import { usePath } from "@/contexts/pathContext";
 import Main from "@/views/Main/Main";
+import OrganGame from "@/views/OrganGame/OrganGame";
 
 const App = () => {
-  const { path } = usePath();
+  const { path, goto } = usePath();
 
   useEffect(() => {
     setSize();
@@ -21,11 +22,17 @@ const App = () => {
       case PATH.Title:
         return <Title />;
       case PATH.Instruction:
-        return <div style={{ color: "black", fontSize: "20px" }}>操作說明</div>;
+        return (
+          <div style={{ color: "black", fontSize: "20px" }}>
+            操作說明<button onClick={() => goto(PATH.Title)}>回首頁</button>
+          </div>
+        );
       case PATH.Organ:
         return <Main />;
       case PATH.System:
         return <Main />;
+      case PATH.OrganGame:
+        return <OrganGame />;
     }
   }, [path]);
 

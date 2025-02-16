@@ -32,3 +32,35 @@ export const sendShowObject = (objectName) => {
     value: objectName,
   });
 };
+
+export const sendShowAllObjects = (objects) => {
+  const iframeWindow = document.querySelector("iframe").contentWindow;
+  iframeWindow.postMessage({
+    type: "showAllObjects",
+    value: objects,
+  });
+};
+
+export const sendHideAllObjects = (objects) => {
+  const iframeWindow = document.querySelector("iframe").contentWindow;
+  iframeWindow.postMessage({
+    type: "hideAllObjects",
+    value: objects,
+  });
+};
+
+export const sendTargetOrgan = (organName) => {
+  const iframeWindow = document.querySelector("iframe").contentWindow;
+  iframeWindow.postMessage({
+    type: "targetOrgan",
+    value: organName,
+  });
+};
+
+export const sendLoadGame = (gameName) => {
+  const iframeWindow = document.querySelector("iframe").contentWindow;
+  iframeWindow.postMessage({
+    type: "loadGame",
+    value: gameName,
+  });
+};

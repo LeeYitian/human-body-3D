@@ -9,7 +9,7 @@ export const StyledBG = styled(BGDiv)`
   position: absolute;
   left: ${(props) => (props.$open ? "0" : "-24%")};
   transition: left 0.5s ease-in-out;
-  z-index: 2;
+  z-index: 3;
 `;
 
 export const StyledTitle = styled(BGDiv)`
@@ -127,12 +127,12 @@ export const StyledPanelOption = styled.div`
   font-size: calc(3.5 * var(--vh));
   margin-bottom: 3%;
   & > span {
-    color: #54697a;
-    background-color: #bdf4ed;
-    border-radius: 8px;
-    border-bottom: 4px solid #76a59d;
+    color: white;
+    // background-color: #bdf4ed;
+    // border-radius: 8px;
+    // border-bottom: 4px solid #76a59d;
     flex: 1;
-    text-align: center;
+    // text-align: center;
     margin-left: 4%;
     cursor: pointer;
   }
@@ -154,8 +154,9 @@ export const StyledSideArrow = styled.div`
   position: absolute;
   height: 100%;
   width: 5%;
-  left: 22%;
+  // left: 22%;
   z-index: 2;
+  transition: all 0.5s ease-in-out;
   & > svg {
     height: 100%;
     font-size: calc(10 * var(--vw));

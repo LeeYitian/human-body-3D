@@ -3,10 +3,9 @@ import { BGBtn } from "@/App.style";
 
 export const StyledContainer = styled.div`
   position: absolute;
-  bottom: 1%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 33%;
+  ${(props) => ({ ...props.$position })};
+  // transform: translateX(-50%);
+  width: 30%;
   display: flex;
   justify-content: space-between;
   align-items: center;

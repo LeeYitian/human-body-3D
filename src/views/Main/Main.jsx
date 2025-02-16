@@ -19,7 +19,7 @@ const Main = () => {
   return (
     <StyledBG $imgSrc="./assets/mainBG.png">
       <SideBar />
-      <ZoomPanel />
+      <ZoomPanel position={{ bottom: "1%", right: "1%" }} />
       <Menu setMode={handleMode} />
       {path === PATH.System && <SystemInfoPanel />}
       <iframe

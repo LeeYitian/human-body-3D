@@ -11,15 +11,48 @@ window.addEventListener("message", (e) => {
       setZoom("zoomOut", e.data.value);
       break;
     case "showObject": {
-      const temp = bodyModel.getChildByName(e.data.value);
-      if (temp) {
-        temp.visible = !temp.visible;
+      const object = bodyModel.getChildByName(e.data.value);
+      console.log("showObject", object, e.data.value);
+      if (object) {
+        object.visible = !object.visible;
+      } else {
+        alert(`找不到${e.data.value}`);
       }
+      break;
+    }
+    case "showAllObjects": {
+      const objects = e.data.value;
+      objects.forEach((object) => {
+        const obj = bodyModel.getChildByName(object);
+        if (obj) {
+          obj.visible = true;
+        }
+      });
+      break;
+    }
+    case "hideAllObjects": {
+      const objects = e.data.value;
+      objects.forEach((object) => {
+        const obj = bodyModel.getChildByName(object);
+        if (obj) {
+          obj.visible = false;
+        }
+      });
       break;
     }
     case "flip":
       bodyModel.gotoAndStop(bodyModel.currentFrame === 0 ? 1 : 0);
       bodyModelInit();
       break;
+    case "targetOrgan": {
+      const organ = bodyModel.getChildByName(e.data.value);
+      if (organ) {
+        targetOrgan(organ);
+      }
+      break;
+    }
+    case "loadGame": {
+      loadGameAndInit(e.data.value);
+    }
   }
 });

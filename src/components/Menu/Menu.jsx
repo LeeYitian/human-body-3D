@@ -26,7 +26,7 @@ const menu = {
 };
 
 const Menu = ({ setMode }) => {
-  const { path } = usePath();
+  const { path, goto } = usePath();
   const [openMenu, setOpenMenu] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const { data } = useData();
@@ -41,6 +41,11 @@ const Menu = ({ setMode }) => {
         setShowModal(true);
         setModalData(data.find((item) => item.id === "systemIntro"));
         break;
+      case "game": {
+        if (path === PATH.Organ) {
+          goto(PATH.OrganGame);
+        }
+      }
     }
   };
   return (
@@ -60,6 +65,7 @@ const Menu = ({ setMode }) => {
           {openMenu &&
             menu[path].map((btn) => (
               <StyledBtn
+                key={btn.id}
                 $imgSrc={btn.src}
                 onClick={() => handleClick(btn.id)}
               />

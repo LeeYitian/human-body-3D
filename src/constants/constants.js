@@ -8,4 +8,5 @@ export const PATH = {
   System: "System",
   Organ: "Organ",
   Instruction: "Instruction",
+  OrganGame: "OrganGame",
 };

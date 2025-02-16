@@ -3,20 +3,21 @@ import { BGDiv, BGBtn } from "@/App.style";
 import { PATH } from "@/constants/constants";
 
 export const StyledContainer = styled(BGDiv)`
-  width: calc(40 * var(--vw));
+  width: calc(35 * var(--vw));
+  // height: calc(45 * var(--vh));
   aspect-ratio: 367/265;
   padding: 4% 2% 2%;
   position: absolute;
-  top: 24%;
-  left: ${(props) => (props.$path === PATH.Organ ? "43%" : "26%")};
+  top: 15%;
+  left: ${(props) => (props.$path === PATH.Organ ? "55%" : "26%")};
   z-index: 3;
 `;
 
 export const StyledCloseBtn = styled(BGBtn)`
   position: absolute;
-  top: 5%;
-  right: 3%;
-  width: calc(4.3 * var(--vw));
+  top: 7%;
+  right: 1%;
+  width: calc(3.5 * var(--vw));
   aspect-ratio: 1/1;
 `;
 
@@ -31,7 +32,7 @@ export const StyledPageBtn = styled.div`
   color: #7eb7af;
   & > svg {
     cursor: pointer;
-    font-size: calc(4 * var(--vw));
+    font-size: calc(3 * var(--vw));
     &:hover {
       transform: scale(0.8);
     }
@@ -46,7 +47,7 @@ export const StyledHead = styled.div`
   gap: 1%;
   font-size: calc(2.5 * var(--vw));
   color: #54697a;
-  margin-bottom: 8%;
+  margin-bottom: 2%;
   & span {
     background-color: #6798ad;
     padding: 2%;
@@ -69,7 +70,7 @@ export const StyledHead = styled.div`
 
 export const StyledContent = styled.div`
   width: 100%;
-  font-size: calc(2.5 * var(--vw));
+  font-size: calc(2.2 * var(--vw));
   color: #54697a;
   white-space: pre-line;
 `;

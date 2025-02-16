@@ -11,7 +11,7 @@ import { useThreejs } from "@/contexts/threejsContext";
 import { useMode } from "@/contexts/modeContext";
 import { MODE } from "@/constants/constants";
 
-const ZoomPanel = () => {
+const ZoomPanel = ({ position }) => {
   const [input, setInput] = useState(1);
   const [flip, setFlip] = useState(false);
   const { mode } = useMode();
@@ -20,7 +20,7 @@ const ZoomPanel = () => {
   } = useThreejs();
 
   const clickZoom = (value, zoomType, input) => {
-    if (value > 35 && zoomType === "zoomIn") {
+    if (value >= 35 && zoomType === "zoomIn") {
       return input ? value - input : value - 10;
     } else if (value < 75 && zoomType === "zoomOut") {
       return input ? value + input : value + 10;
@@ -30,7 +30,7 @@ const ZoomPanel = () => {
   };
 
   return (
-    <StyledContainer>
+    <StyledContainer $position={position}>
       <StyledZoomArea>
         <StyledZoomBtn
           $imgSrc="./assets/zoomOutBtn.png"
@@ -41,7 +41,7 @@ const ZoomPanel = () => {
             } else {
               camera.fov = clickZoom(camera.fov, "zoomOut");
               camera.updateProjectionMatrix();
-              setInput(input - 5);
+              setInput(Math.max(1, input - 5));
             }
           }}
         />
@@ -60,18 +60,18 @@ const ZoomPanel = () => {
                 if (mode === MODE["2D"]) {
                   sendZoomIn(0.1);
                 } else {
-                  camera.fov = clickZoom(camera.fov, "zoomIn", 4.5);
+                  camera.fov = clickZoom(camera.fov, "zoomIn", 1.6);
                   camera.updateProjectionMatrix();
                 }
               } else if (delta < 0) {
                 if (mode === MODE["2D"]) {
                   sendZoomOut(0.1);
                 } else {
-                  camera.fov = clickZoom(camera.fov, "zoomOut", 4.5);
+                  camera.fov = clickZoom(camera.fov, "zoomOut", 1.6);
                   camera.updateProjectionMatrix();
                 }
               }
-              setInput(value);
+              setInput(parseInt(value));
             }}
           />
         </div>
@@ -84,7 +84,7 @@ const ZoomPanel = () => {
             } else {
               camera.fov = clickZoom(camera.fov, "zoomIn");
               camera.updateProjectionMatrix();
-              setInput(input + 5);
+              setInput(Math.min(25, input + 5));
             }
           }}
         />
@@ -98,14 +98,44 @@ const ZoomPanel = () => {
           if (mode === MODE["2D"]) {
             sendFlip();
           } else {
-            // 讓相機到達模型背後
+            // const direction = new THREE.Vector3();
+            // camera.getWorldDirection(direction); // 取得相機當前的觀看方向
+            // direction.normalize().multiplyScalar(-10); // 讓方向反向，並乘上一個合適的距離 (5 可調整)
+            // console.log("direction", direction);
+
+            // 設定新相機位置
             camera.position.set(
               camera.position.x,
               camera.position.y,
               camera.position.z * -1
             );
-            // // 讓相機看向模型
+
+            // 讓相機看向目標
             camera.lookAt(object.position);
+
+            // 讓相機到達模型背後
+            // camera.position.set(
+            //   camera.position.x,
+            //   camera.position.y,
+            //   camera.position.z * -1
+            // );
+            // // 讓相機看向模型
+            // camera.lookAt(object.position);
+
+            // // 取得人體的世界方向 (正面方向)
+            // const forwardDirection = new THREE.Vector3();
+            // object.getWorldDirection(forwardDirection);
+
+            // // 計算「背面」的位置 (正面的反方向)
+            // const backPosition = new THREE.Vector3()
+            //   .copy(object.position)
+            //   .add(forwardDirection.negate().multiplyScalar(5));
+
+            // // 設定相機位置到背面
+            // camera.position.copy(backPosition);
+
+            // // 讓相機看向人體
+            // camera.lookAt(object.position);
           }
         }}
       />
