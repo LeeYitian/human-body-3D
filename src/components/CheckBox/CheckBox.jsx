@@ -9,7 +9,7 @@ const CheckBox = ({ checked, updateState }) => {
         updateState();
       }}
     >
-      <Icon icon="material-symbols:check-rounded" color="#376d6d" />
+      <Icon icon="iconamoon:check-bold" color="#294654" />
     </StyledCheckBox>
   );
 };

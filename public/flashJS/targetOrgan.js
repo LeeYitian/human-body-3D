@@ -5,6 +5,8 @@ function targetOrgan(organ) {
   });
   organ.gotoAndStop(1);
 
+  if (path === "System") return;
+
   const pos = organ.localToLocal(organ.x, organ.y, zoomContent);
   const center = {
     x: 1280 / 2,

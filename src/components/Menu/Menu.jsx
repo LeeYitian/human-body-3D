@@ -7,26 +7,40 @@ import {
   StyledSwitch,
 } from "./Menu.style";
 import { usePath } from "@/contexts/pathContext";
+import { useMode } from "@/contexts/modeContext";
 import { PATH } from "@/constants/constants";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import IntroModal from "@/components/IntroModal/IntroModal";
 import { useData } from "@/contexts/dataContext";
 
 const menu = {
   [PATH.Organ]: [
-    { id: "mode", src: "./assets/switch3DBtn.png" },
+    {
+      id: "mode",
+      src: {
+        "2D": "./assets/switch3DBtn.png",
+        "3D": "./assets/switch2DBtn.png",
+      },
+    },
     { id: "game", src: "./assets/gameBtn.png" },
   ],
   [PATH.System]: [
     { id: "animation", src: "./assets/playAnimationBtn.png" },
     { id: "intro", src: "./assets/systemIntroBtn.png" },
-    { id: "mode", src: "./assets/switch3DBtn.png" },
+    {
+      id: "mode",
+      src: {
+        "2D": "./assets/switch3DBtn.png",
+        "3D": "./assets/switch2DBtn.png",
+      },
+    },
     { id: "game", src: "./assets/gameBtn.png" },
   ],
 };
 
 const Menu = ({ setMode }) => {
   const { path, goto } = usePath();
+  const { mode } = useMode();
   const [openMenu, setOpenMenu] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const { data } = useData();
@@ -48,6 +62,13 @@ const Menu = ({ setMode }) => {
       }
     }
   };
+
+  useEffect(() => {
+    if (path === PATH.Organ || !data) return;
+    setModalData(data.find((item) => item.id === "systemIntro"));
+    setShowModal(true);
+  }, [data]);
+
   return (
     <>
       <StyledContainer>
@@ -63,13 +84,15 @@ const Menu = ({ setMode }) => {
         </StyledSwitch>
         <StyledBtnArea>
           {openMenu &&
-            menu[path].map((btn) => (
-              <StyledBtn
-                key={btn.id}
-                $imgSrc={btn.src}
-                onClick={() => handleClick(btn.id)}
-              />
-            ))}
+            menu[path].map((btn) => {
+              return (
+                <StyledBtn
+                  key={btn.id}
+                  $imgSrc={btn.id === "mode" ? btn.src[mode] : btn.src}
+                  onClick={() => handleClick(btn.id)}
+                />
+              );
+            })}
           {!openMenu && <StyledMenuText>教學箱</StyledMenuText>}
         </StyledBtnArea>
       </StyledContainer>

@@ -40,7 +40,7 @@ const ORGAN = {
   肝臟: "liver",
   胰臟: "pancreas",
   膽囊: "gallbladder",
-  腎臟: "kidney",
+  // 腎臟: "kidney",
   脾臟: "spleen",
   胃: "stomach",
   大腸: "largeIntestine",
@@ -65,7 +65,7 @@ const SideBar = () => {
     liver: true,
     pancreas: true,
     gallbladder: true,
-    kidney: true,
+    // kidney: true,
     spleen: true,
     stomach: true,
     largeIntestine: true,
@@ -203,7 +203,9 @@ const SideBar = () => {
         {path === PATH.System && (
           <StyledContent>
             {Object.keys(SYSTEM).map((key) => (
-              <StyledSystemPanel key={key}>{key}</StyledSystemPanel>
+              <StyledSystemPanel key={key} $active={true}>
+                {key}
+              </StyledSystemPanel>
             ))}
           </StyledContent>
         )}

@@ -19,6 +19,7 @@ import {
   sendHideAllObjects,
   sendShowAllObjects,
 } from "@/utils/message";
+import Draggable from "react-draggable";
 
 const INFO = {
   消化道: {
@@ -33,6 +34,7 @@ const INFO = {
   消化腺: {
     唾腺: "salivaryGland",
     胃腺: "gastricGland",
+    膽囊: "gallbladder",
     肝臟: "liver",
     胰臟: "pancreas",
     腸腺: "intestinalGland",
@@ -59,6 +61,7 @@ const SystemInfoPanel = () => {
   const [glandOrgans, setGlandOrgans] = useState({
     salivaryGland: true,
     gastricGland: true,
+    gallbladder: true,
     liver: true,
     pancreas: true,
     intestinalGland: true,
@@ -67,9 +70,9 @@ const SystemInfoPanel = () => {
   const handleCheckBox = (system, organ) => {
     if (mode === MODE["3D"]) {
       const tempObj = objects[organ];
-      if (tempObj.length) {
+      if (tempObj && tempObj.length) {
         tempObj.forEach((obj) => (obj.visible = !obj.visible));
-      } else {
+      } else if (tempObj === undefined || tempObj.length === 0) {
         alert("找不到" + organ);
         return;
       }
@@ -150,74 +153,76 @@ const SystemInfoPanel = () => {
         $imgSrc="./assets/informationBtn.png"
         onClick={() => setOpenPanel(!openPanel)}
       />
-      <StyledInfoPanel $open={openPanel}>
-        <StyledMainBtn
-          $imgSrc="./assets/informationBtn.png"
-          onClick={() => setOpenPanel(!openPanel)}
-        />
-        {Object.keys(INFO).map((system) => {
-          const temp = system === "消化道" ? tractOrgans : glandOrgans;
-          return (
-            <StyledPanelColumn key={system}>
-              <StyledSystemOption>
-                <CheckBox
-                  checked={Object.values(temp).every((v) => v)}
-                  updateState={() => selecAll(system)}
-                />
-                <span>{system}</span>
-              </StyledSystemOption>
-              {Object.keys(INFO[system]).map((organ) => {
-                const checked =
-                  system === "消化道"
-                    ? tractOrgans[INFO[system][organ]]
-                    : glandOrgans[INFO[system][organ]];
-                return (
-                  <StyledOrganOption key={organ}>
-                    <CheckBox
-                      checked={checked}
-                      updateState={() =>
-                        handleCheckBox(system, INFO[system][organ])
-                      }
-                    />
-                    <span
-                      onClick={() => {
-                        setShowModal(true);
-                        setModalData(
-                          data.find((i) => i.id === INFO[system][organ])
-                        );
-                        // if (mode === MODE["2D"]) {
-                        //   sendTargetOrgan(INFO[system][organ]);
-                        // }
-                        // else {
-                        //   const targetPosition = new THREE.Vector3();
-                        //   objects[ORGAN[key]].getWorldPosition(targetPosition);
+      <Draggable>
+        <StyledInfoPanel $open={openPanel}>
+          <StyledMainBtn
+            $imgSrc="./assets/informationBtn.png"
+            onClick={() => setOpenPanel(!openPanel)}
+          />
+          {Object.keys(INFO).map((system) => {
+            const temp = system === "消化道" ? tractOrgans : glandOrgans;
+            return (
+              <StyledPanelColumn key={system}>
+                <StyledSystemOption>
+                  <CheckBox
+                    checked={Object.values(temp).every((v) => v)}
+                    updateState={() => selecAll(system)}
+                  />
+                  <span>{system}</span>
+                </StyledSystemOption>
+                {Object.keys(INFO[system]).map((organ) => {
+                  const checked =
+                    system === "消化道"
+                      ? tractOrgans[INFO[system][organ]]
+                      : glandOrgans[INFO[system][organ]];
+                  return (
+                    <StyledOrganOption key={organ}>
+                      <CheckBox
+                        checked={checked}
+                        updateState={() =>
+                          handleCheckBox(system, INFO[system][organ])
+                        }
+                      />
+                      <span
+                        onClick={() => {
+                          setShowModal(true);
+                          setModalData(
+                            data.find((i) => i.id === INFO[system][organ])
+                          );
+                          if (mode === MODE["2D"]) {
+                            sendTargetOrgan(INFO[system][organ]);
+                          }
+                          // else {
+                          //   const targetPosition = new THREE.Vector3();
+                          //   objects[ORGAN[key]].getWorldPosition(targetPosition);
 
-                        //   // controls.target.set(
-                        //   //   targetPosition.x,
-                        //   //   targetPosition.y,
-                        //   //   targetPosition.z
-                        //   // );
+                          //   // controls.target.set(
+                          //   //   targetPosition.x,
+                          //   //   targetPosition.y,
+                          //   //   targetPosition.z
+                          //   // );
 
-                        //   // 設置相機位置
-                        //   camera.position.set(
-                        //     targetPosition.x,
-                        //     targetPosition.y,
-                        //     camera.position.z
-                        //   );
+                          //   // 設置相機位置
+                          //   camera.position.set(
+                          //     targetPosition.x,
+                          //     targetPosition.y,
+                          //     camera.position.z
+                          //   );
 
-                        //   camera.lookAt(targetPosition);
-                        // }
-                      }}
-                    >
-                      {organ}
-                    </span>
-                  </StyledOrganOption>
-                );
-              })}
-            </StyledPanelColumn>
-          );
-        })}
-      </StyledInfoPanel>
+                          //   camera.lookAt(targetPosition);
+                          // }
+                        }}
+                      >
+                        {organ}
+                      </span>
+                    </StyledOrganOption>
+                  );
+                })}
+              </StyledPanelColumn>
+            );
+          })}
+        </StyledInfoPanel>
+      </Draggable>
       {showModal && <IntroModal setShowModal={setShowModal} data={modalData} />}
     </>
   );

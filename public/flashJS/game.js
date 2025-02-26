@@ -1,7 +1,8 @@
 let bodyModel;
 let game;
+let path;
 // const zoomStep = [1, 1.5, 2, 3];
-let scale = 1;
+let scale = 1.5;
 let zoomBaseSize = {
   w: 0,
   h: 0,
@@ -13,6 +14,7 @@ let zoomContentXY = {
 let zoomContent;
 let gameContent;
 let targetedOrgan;
+let hideOrgans = [];
 function gameInit() {
   stage.enableMouseOver(20);
   createjs.Touch.enable = function (stage, singleTouch, allowDefault) {
@@ -31,8 +33,19 @@ function gameInit() {
   createjs.Touch.enable(stage, true);
 
   game = exportRoot;
-  zoomContent = game.getChildByName("zoomContent");
+  game.gotoAndStop(0);
+
+  parent.postMessage({ type: "getPath" });
+}
+
+function zoomContentInit() {
+  console.log("zoomContentInit", game);
+  zoomContent = game.children.find(
+    (child) => child.name && child.name.includes("zoomContent")
+  );
   bodyModel = zoomContent.getChildByName("bodyModel");
+  // zoomContent = game.getChildByName("zoomContent");
+  // bodyModel = zoomContent.getChildByName("bodyModel");
   bodyModel.gotoAndStop(0);
   bodyModelInit();
 
@@ -45,23 +58,39 @@ function gameInit() {
     y: zoomContent.y,
   };
 
+  zoomContent.scaleX = zoomContent.scaleY = 1.5;
+  zoomContent.y -= 100;
+
   zoomContent.addEventListener("mousedown", areaDragDown);
+  zoomContent.addEventListener("mousewheel", (e) => console.log("e", e));
   console.log("zoomContent", zoomContent);
 
   // console.log("bodyModel", bodyModel);
 }
 
 function bodyModelInit() {
+  console.log("bodyModelInit", bodyModel);
   bodyModel.children.forEach((child) => {
+    child.visible = true;
     if (child.totalFrames > 0) {
       child.gotoAndStop(0);
     }
-    if (child.name.includes(targetedOrgan)) {
+    if (child.name && child.name.includes(targetedOrgan)) {
       child.gotoAndStop(1);
     }
-    if (child.name.includes("lung")) {
+    if (
+      (child.name && child.name.includes("lung")) ||
+      (child.name && child.name.includes("mouth") && path === "Organ")
+    ) {
       child.visible = false;
     }
+
+    hideOrgans.forEach((organ) => {
+      const organName = organ.split("_")[0];
+      if (child.name && child.name.includes(organName)) {
+        child.visible = false;
+      }
+    });
   });
 
   if (bodyModel.isGaming) {
@@ -73,8 +102,13 @@ function bodyModelInit() {
         } else if (organs.includes(name)) {
           child.alpha = 0.01;
         }
+        if (name === "mouth") {
+          child.visible = false;
+        }
       }
     });
+    const bodyFrame = bodyModel.getChildByName("body");
+    bodyFrame.mouseEnable = false;
   }
 }
 

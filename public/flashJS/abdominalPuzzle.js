@@ -38,7 +38,6 @@ function puzzleClick(e) {
   console.log("points", points);
   offsetX = points.x - dragTarget.x;
   offsetY = points.y - dragTarget.y;
-  console.log("offset", offsetX);
   e.currentTarget.addEventListener("pressmove", puzzleDragMove);
   e.currentTarget.addEventListener("pressup", puzzleDragUp);
 
@@ -55,14 +54,14 @@ function puzzleDragMove(e) {
   dragTarget.y = points.y - offsetY;
 }
 
-function puzzleDragUp() {
+function puzzleDragUp(e) {
   dragTarget.removeEventListener("pressmove", puzzleDragMove);
   dragTarget.removeEventListener("pressup", puzzleDragUp);
-  checkAnswer();
+  checkAnswer(e);
 }
 
-function checkAnswer() {
-  const points = bodyModel.globalToLocal(dragTarget.x, dragTarget.y);
+function checkAnswer(e) {
+  const points = bodyModel.globalToLocal(e.stageX, e.stageY);
   const objects = bodyModel.getObjectsUnderPoint(points.x, points.y);
   console.log("checkAnswer", objects);
 

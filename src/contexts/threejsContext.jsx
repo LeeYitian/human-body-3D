@@ -11,6 +11,7 @@ const threejsReducer = (state, action) => {
       return { ...state, object: action.payload };
     case "setObjects":
       const models = action.payload;
+      console.log("models", models);
       const obj = {
         liver: models.filter(
           (model) => model.name === "Female_Digestive_Liver_Geo"
@@ -21,14 +22,14 @@ const threejsReducer = (state, action) => {
         gallbladder: models.filter(
           (model) => model.name === "Female_Digestive_Gall_Bladder_Geo"
         ),
-        kidney: models.filter(
-          (model) =>
-            model.name === "Female_Endocrine_Adrenal_Gland_Geo_Right" ||
-            model.name === "Female_Endocrine_Adrenal_Gland_Geo_Left"
-        ),
-        // spleen: models.filter(
-        //   (model) => model.name === "Female_Digestive_Liver_Geo"
+        // kidney: models.filter(
+        //   (model) =>
+        //     model.name === "Female_Endocrine_Adrenal_Gland_Geo_Right" ||
+        //     model.name === "Female_Endocrine_Adrenal_Gland_Geo_Left"
         // ),
+        spleen: models.filter(
+          (model) => model.name === "Female_Lymphatic_Spleen_Geo"
+        ),
         stomach: models.filter((model) => model.name === "Stomach"),
         largeIntestine: models.filter((model) => model.name === "Tjocktarm"),
         smallIntestine: models.filter(
@@ -38,9 +39,7 @@ const threejsReducer = (state, action) => {
         anus: models.filter((model) => model.name === "anus"),
         esophagus: models.filter((model) => model.name === "esophagus"),
         salivaryGland: models.filter(
-          (model) =>
-            model.name === "salivary_gland_L001" ||
-            model.name === "salivary_gland_L"
+          (model) => model.name === "Group003" || model.name === "Group002"
         ),
         falciformLigament: models.filter(
           (model) => model.name === "Female_Digestove_Falciform_Ligament_Geo"
@@ -53,6 +52,9 @@ const threejsReducer = (state, action) => {
         ),
         mouth: models.filter(
           (model) => model.name === "Female_Digestive_Mouth_Geo"
+        ),
+        body: models.filter(
+          (model) => model.name === "m_med_nrw_combined_lod0_mesh"
         ),
       };
       // Object.keys(obj).forEach((key) => {

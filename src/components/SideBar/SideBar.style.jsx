@@ -63,7 +63,7 @@ export const StyledContentShow = styled.div`
   display: flex;
   width: 100%;
   padding: 0 0 0 7%;
-  height: 30%;
+  height: 25%;
 `;
 
 export const StyledOption = styled.div`
@@ -73,6 +73,7 @@ export const StyledOption = styled.div`
   flex: 1 1 45%;
   align-items: center;
   margin-bottom: 3%;
+  height: 100%;
 `;
 
 export const StyledContent = styled.div`
@@ -106,6 +107,9 @@ export const StyledPanelHeader = styled.div`
     display: flex;
     align-items: center;
   }
+  span {
+    margin-left: 4%;
+  }
 `;
 
 export const StyledPanelContent = styled.div`
@@ -120,12 +124,13 @@ export const StyledPanelContent = styled.div`
 `;
 
 export const StyledPanelOption = styled.div`
-  width: 60%;
-  height: calc(6 * var(--vh));
+  width: 100%;
+  height: calc(5 * var(--vh));
   display: flex;
   align-items: center;
   font-size: calc(3.5 * var(--vh));
   margin-bottom: 3%;
+  padding-left: 4%;
   & > span {
     color: white;
     // background-color: #bdf4ed;
@@ -148,6 +153,10 @@ export const StyledSystemPanel = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 16px;
+  ${(props) =>
+    props.$active
+      ? "box-shadow: 1px 1px 20px -10px rgb(255, 234, 0), -1px -1px 20px -10px rgb(255, 234, 0), 1px -1px 20px -10px rgb(255, 234, 0), -1px 1px 20px -10px rgb(255, 234, 0);"
+      : "box-shadow: none;"}
 `;
 
 export const StyledSideArrow = styled.div`

@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { setSize } from "@/utils/windowSize";
 import { PATH } from "@/constants/constants";
 import Title from "@/views/Title/Title";
@@ -16,6 +16,24 @@ const App = () => {
       window.removeEventListener("resize", setSize);
     };
   }, []);
+
+  const handleMessage = useCallback(
+    (e) => {
+      console.log(`[iframe -> main]:`, e.data);
+      if (e.data.type === "getPath") {
+        e.source.postMessage({ type: "getPath", value: path });
+      }
+    },
+    [path]
+  );
+
+  useEffect(() => {
+    window.addEventListener("message", handleMessage);
+
+    return () => {
+      window.removeEventListener("message", handleMessage);
+    };
+  }, [handleMessage]);
 
   const views = useMemo(() => {
     switch (path) {

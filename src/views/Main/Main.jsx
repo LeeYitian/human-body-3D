@@ -25,6 +25,7 @@ const Main = () => {
         threejsCanvas.remove();
         threejsRef.current = null;
       }
+      switchMode(MODE["2D"]);
     };
   }, []);
 
@@ -38,6 +39,7 @@ const Main = () => {
         id="canvas2D"
         src="./flash.html"
         style={{ display: mode === MODE["2D"] ? "block" : "none" }}
+        onWheel={(e) => console.log(e)}
       />
       <ThreeJSCanvas mode={mode} threejsRef={threejsRef} />
     </StyledBG>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import * as THREE from "three";
 import {
   StyledContainer,
@@ -11,23 +11,65 @@ import { useThreejs } from "@/contexts/threejsContext";
 import { useMode } from "@/contexts/modeContext";
 import { MODE } from "@/constants/constants";
 
+let originalDistance = null;
+
 const ZoomPanel = ({ position }) => {
   const [input, setInput] = useState(1);
   const [flip, setFlip] = useState(false);
   const { mode } = useMode();
   const {
-    state: { camera, object },
+    state: { camera, object, controls },
   } = useThreejs();
 
   const clickZoom = (value, zoomType, input) => {
+    let newFOV = value;
     if (value >= 35 && zoomType === "zoomIn") {
-      return input ? value - input : value - 10;
+      newFOV = input ? Math.floor(value - input) : value - 10;
+      newFOV = newFOV < 35 ? 35 : newFOV;
     } else if (value < 75 && zoomType === "zoomOut") {
-      return input ? value + input : value + 10;
-    } else {
-      return value;
+      newFOV = input ? Math.floor(value + input) : value + 10;
+      newFOV = newFOV > 75 ? 75 : newFOV;
+    }
+    return newFOV;
+  };
+
+  const wheelZoom3D = useCallback(
+    (e) => {
+      if (!camera) return;
+      if (e.deltaY > 0) {
+        camera.fov = clickZoom(camera.fov, "zoomOut", 1.7);
+        setInput(25 - (((camera.fov - 35) * 24) / 40 + 1));
+        camera.updateProjectionMatrix();
+      } else if (e.deltaY < 0) {
+        camera.fov = clickZoom(camera.fov, "zoomIn", 1.7);
+        setInput(25 - (((camera.fov - 35) * 24) / 40 + 1));
+        camera.updateProjectionMatrix();
+      }
+    },
+    [camera, clickZoom]
+  );
+
+  const wheelZoom = (e) => {
+    if (e.deltaY > 0) {
+      sendZoomIn(0.11);
+      setInput(input + 4);
+    } else if (e.deltaY < 0) {
+      sendZoomOut(0.11);
+      setInput(input - 4);
     }
   };
+
+  useEffect(() => {
+    if (!camera && mode !== MODE["3D"]) return;
+    const canvas = document.getElementById("threejsCanvas");
+    canvas.addEventListener("wheel", wheelZoom3D);
+  }, [camera, mode]);
+
+  useEffect(() => {
+    if (mode !== MODE["2D"]) return;
+    const canvas = document.getElementById("canvas2D");
+    canvas.addEventListener("wheel", wheelZoom);
+  }, [mode]);
 
   useEffect(() => {
     setInput(1);
@@ -59,19 +101,20 @@ const ZoomPanel = ({ position }) => {
             onInput={(e) => {
               const { value } = e.target;
               const delta = value - input;
+              console.log("value", value);
 
               if (delta > 0) {
                 if (mode === MODE["2D"]) {
-                  sendZoomIn(0.1);
+                  sendZoomIn(0.11);
                 } else {
-                  camera.fov = clickZoom(camera.fov, "zoomIn", 1.6);
+                  camera.fov = clickZoom(camera.fov, "zoomIn", 40 / 24);
                   camera.updateProjectionMatrix();
                 }
               } else if (delta < 0) {
                 if (mode === MODE["2D"]) {
-                  sendZoomOut(0.1);
+                  sendZoomOut(0.11);
                 } else {
-                  camera.fov = clickZoom(camera.fov, "zoomOut", 1.6);
+                  camera.fov = clickZoom(camera.fov, "zoomOut", 40 / 24);
                   camera.updateProjectionMatrix();
                 }
               }

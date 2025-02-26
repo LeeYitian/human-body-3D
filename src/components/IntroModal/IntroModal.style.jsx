@@ -11,11 +11,13 @@ export const StyledContainer = styled(BGDiv)`
   top: 15%;
   left: ${(props) => (props.$path === PATH.Organ ? "55%" : "26%")};
   z-index: 3;
+  font-family: "微軟正黑體";
+  font-weight: bold;
 `;
 
 export const StyledCloseBtn = styled(BGBtn)`
   position: absolute;
-  top: 7%;
+  top: 1%;
   right: 1%;
   width: calc(3.5 * var(--vw));
   aspect-ratio: 1/1;

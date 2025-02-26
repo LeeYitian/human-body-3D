@@ -24,12 +24,20 @@ const IntroModal = ({ setShowModal, data }) => {
             setShowModal(false);
             sendUntargetOrgan();
           }}
+          onTouchStart={() => {
+            setShowModal(false);
+            sendUntargetOrgan();
+          }}
         />
         <StyledHead>
           {data?.title || ""}
           {path === PATH.Organ && (
             <span
               onClick={() => {
+                goto(PATH.Organ);
+                setShowModal(false);
+              }}
+              onTouchStart={() => {
                 goto(PATH.Organ);
                 setShowModal(false);
               }}
@@ -40,6 +48,10 @@ const IntroModal = ({ setShowModal, data }) => {
           {path === PATH.Organ && (
             <span
               onClick={() => {
+                goto(PATH.System);
+                setShowModal(false);
+              }}
+              onTouchStart={() => {
                 goto(PATH.System);
                 setShowModal(false);
               }}
@@ -54,10 +66,16 @@ const IntroModal = ({ setShowModal, data }) => {
             <Icon
               icon="bx:left-arrow"
               onClick={() => setContentPage(Math.max(0, contentPage - 1))}
+              onTouchStart={() => setContentPage(Math.max(0, contentPage - 1))}
             />
             <Icon
               icon="bxs:right-arrow"
               onClick={() =>
+                setContentPage(
+                  Math.min(data?.content.length - 1, contentPage + 1)
+                )
+              }
+              onTouchStart={() =>
                 setContentPage(
                   Math.min(data?.content.length - 1, contentPage + 1)
                 )

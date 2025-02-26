@@ -1,7 +1,3 @@
-window.addEventListener("message", (e) => {
-  console.log(`[iframe -> main]:`, e.data);
-});
-
 export const sendZoomIn = (input) => {
   const iframeWindow = document.querySelector("iframe").contentWindow;
   iframeWindow.postMessage({

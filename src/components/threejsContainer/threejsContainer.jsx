@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { TIFFLoader } from "three/examples/jsm/Addons.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
@@ -8,6 +8,7 @@ import { useThreejs } from "@/contexts/threejsContext";
 
 const ThreeJSCanvas = ({ mode, threejsRef }) => {
   const { dispatch } = useThreejs();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (mode !== MODE["3D"] || threejsRef.current) return;
@@ -38,6 +39,10 @@ const ThreeJSCanvas = ({ mode, threejsRef }) => {
 
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableZoom = false;
+    controls.screenSpacePanning = true;
+    // controls.maxDistance = 53;
+    // controls.minDistance = 15;
+
     dispatch({ type: "setControls", payload: controls });
 
     // 1. 環境光，確保所有地方都有基本照明
@@ -65,14 +70,20 @@ const ThreeJSCanvas = ({ mode, threejsRef }) => {
 
     const manager = new THREE.LoadingManager();
     manager.addHandler(/\.tif$/i, new TIFFLoader());
+    manager.onProgress = function (url, itemsLoaded, itemsTotal) {
+      // progressElement.style.width = (itemsLoaded / itemsTotal * 100) + '%';
+      console.log("manager", (itemsLoaded / itemsTotal) * 100 + "%");
+    };
+    manager.onLoad = function (url) {
+      setLoading(false);
+      console.log("manager onLoad", controls.getDistance(), camera.fov);
+    };
     const fbxLoader = new FBXLoader(manager);
     fbxLoader.load(
       "./models/export/test_all.FBX",
       (object) => {
         // object.scale.set(0.8, 0.8, 0.8)
-
         object.traverse((child) => {
-          // console.log("child", child.name);
           if (child.name.includes("Lung")) {
             child.visible = false;
           }
@@ -81,17 +92,15 @@ const ThreeJSCanvas = ({ mode, threejsRef }) => {
         const size = box.getSize(new THREE.Vector3()).length();
         const center = box.getCenter(new THREE.Vector3());
 
-        object.position.sub(center); // 讓模型居中
+        object.position.sub({ ...center, y: center.y + 20 }); // 讓模型居中
 
-        camera.fov = 35;
-
-        camera.position.z = size / 1.5; // 根據模型大小調整相機距離
+        camera.position.z = size / 2; // 根據模型大小調整相機距離
         dispatch({ type: "setObjects", payload: object.children });
         dispatch({ type: "setObject", payload: object });
         scene.add(object);
       },
       (xhr) => {
-        // console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
+        console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
       },
       (error) => {
         console.log(error);
@@ -117,15 +126,33 @@ const ThreeJSCanvas = ({ mode, threejsRef }) => {
   }, [mode]);
 
   return (
-    <canvas
-      id="threejsCanvas"
-      style={{
-        position: "absolute",
-        top: "0",
-        display: mode === MODE["3D"] ? "block" : "none",
-        zIndex: "1",
-      }}
-    ></canvas>
+    <>
+      <div
+        className="loading"
+        style={{
+          position: "absolute",
+          top: "0",
+          bottom: "0",
+          left: "0",
+          right: "0",
+          zIndex: "4",
+          display: loading && mode === MODE["3D"] ? "flex" : "none",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <img src="./assets/_preloader.gif" alt="loading" />
+      </div>
+      <canvas
+        id="threejsCanvas"
+        style={{
+          position: "absolute",
+          top: "0",
+          display: mode === MODE["3D"] ? "block" : "none",
+          zIndex: "1",
+        }}
+      ></canvas>
+    </>
   );
 };
 
