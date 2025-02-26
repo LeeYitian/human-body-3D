@@ -102,7 +102,7 @@ function bodyModelInit() {
         } else if (organs.includes(name)) {
           child.alpha = 0.01;
         }
-        if (name === "mouth") {
+        if (name === "mouth" || name === "esophagus" || name === "anus") {
           child.visible = false;
         }
       }
