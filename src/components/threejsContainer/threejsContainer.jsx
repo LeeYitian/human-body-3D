@@ -141,7 +141,7 @@ const ThreeJSCanvas = ({ mode, threejsRef }) => {
           alignItems: "center",
         }}
       >
-        <img src="./assets/_preloader.gif" alt="loading" />
+        <img src="./assets/preloader.gif" alt="loading" />
       </div>
       <canvas
         id="threejsCanvas"
