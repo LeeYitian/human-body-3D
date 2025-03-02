@@ -13,27 +13,21 @@ export const StyledGameCatagory = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: calc(3 * var(--vw));
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 `;
 
-export const StyledCatagoryBtn = styled.div`
+export const StyledCatagoryBtn = styled(BGBtn)`
   width: calc(20 * var(--vw));
   aspect-ratio: 312/125;
-  background-color: #6798ad;
-  border-radius: 16px;
-  border-bottom: 4px solid #5378a0;
-  font-size: calc(4 * var(--vw));
-  color: white;
   cursor: pointer;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   &:hover {
     transform: scale(0.9);
   }
+  ${(props) =>
+    props.$disabled && "cursor: default; &:hover { transform: none; }"}
 `;
 
 export const StyledSubBtn = styled.div`

@@ -13,8 +13,8 @@ export const StyledMainBtn = styled(BGBtn)`
 
 export const StyledInfoPanel = styled.div`
   background-color: #99c2d6;
-  border-radius: 16px;
-  border: 3px solid #61929b;
+  border-radius: calc(1 * var(--vw));
+  border: calc(0.2 * var(--vw)) solid #61929b;
   width: 30%;
   aspect-ratio: 497/608;
   position: absolute;
@@ -28,8 +28,8 @@ export const StyledInfoPanel = styled.div`
     top: -8%;
     bottom: unset;
     right: unset;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 40%;
+    // transform: translateX(-50%);
   }
 `;
 
@@ -68,8 +68,8 @@ export const StyledOrganOption = styled.div`
   & > span {
     color: white;
     background-color: #6798ad;
-    border-radius: 8px;
-    border-bottom: 4px solid #5378a0;
+    border-radius: calc(0.5 * var(--vw));
+    border-bottom: calc(0.4 * var(--vw)) solid #5378a0;
     // flex: 1;
     margin-left: 4%;
     text-align: center;

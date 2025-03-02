@@ -20,8 +20,8 @@ export const StyledZoomArea = styled.div`
   height: calc(6 * var(--vh));
   & > div.range {
     // padding: 1%;
-    border-radius: 8px;
-    border: 3px solid #4b677f;
+    border-radius: calc(0.5 * var(--vw));
+    border: calc(0.3 * var(--vw)) solid #4b677f;
     background-color: #b3d6f4;
     height: 70%;
     position: relative;
@@ -32,7 +32,7 @@ export const StyledZoomArea = styled.div`
     appearance: none;
     height: 75%;
     width: 98%;
-    border-radius: 5px;
+    border-radius: calc(0.3 * var(--vw));
     background: #90acba;
     position: absolute;
     top: 6%;
@@ -42,7 +42,7 @@ export const StyledZoomArea = styled.div`
       width: calc(2 * var(--vw));
       height: calc(4 * var(--vw));
       background: #4797c9;
-      border-radius: 5px;
+      border-radius: calc(0.4 * var(--vw));
       cursor: pointer;
     }
     &::-moz-range-thumb {
@@ -51,7 +51,7 @@ export const StyledZoomArea = styled.div`
       width: calc(2 * var(--vw));
       height: calc(4 * var(--vw));
       background: #4797c9;
-      border-radius: 5px;
+      border-radius: calc(0.4 * var(--vw));
       cursor: pointer;
     }
   }

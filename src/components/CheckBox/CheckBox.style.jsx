@@ -5,7 +5,7 @@ export const StyledCheckBox = styled.div`
   aspect-ratio: 1/1;
   background-color: white;
   border-radius: 25%;
-  border: 3px solid #6e6e99;
+  border: calc(0.3 * var(--vw)) solid #6e6e99;
   margin-right: 1%;
   cursor: pointer;
   display: inline-flex;

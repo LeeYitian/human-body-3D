@@ -39,7 +39,7 @@ export const StyledSwitch = styled.div`
   background-color: #5f87b0;
   width: 14%;
   height: 15%;
-  border-radius: 0px 16px 16px 0px;
+  border-radius: 0px calc(1 * var(--vw)) calc(1 * var(--vw)) 0px;
   position: absolute;
   bottom: 2%;
   right: -9%;
@@ -94,7 +94,10 @@ export const StyledPanelHeader = styled.div`
   background-color: #79b6ef;
   width: 100%;
   height: calc(8 * var(--vh));
-  border-radius: ${(props) => (props.$open ? "16px 16px 0px 0px" : "16px")};
+  border-radius: ${(props) =>
+    props.$open
+      ? "calc(1 * var(--vw)) calc(1 * var(--vw)) 0px 0px"
+      : "calc(1 * var(--vw))"};
   color: white;
   font-size: calc(4 * var(--vh));
   display: flex;
@@ -116,7 +119,7 @@ export const StyledPanelContent = styled.div`
   ${(props) => (props.$open ? "display: flex;" : "display: none;")}
   background-color: #79b6ef;
   width: 100%;
-  border-radius: 0px 0px 16px 16px;
+  border-radius: 0px 0px calc(1 * var(--vw)) calc(1 * var(--vw));
   // display: flex;
   flex-direction: column;
   justify-content: center;
@@ -152,7 +155,7 @@ export const StyledSystemPanel = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 16px;
+  border-radius: calc(1 * var(--vw));
   ${(props) =>
     props.$active
       ? "box-shadow: 1px 1px 20px -10px rgb(255, 234, 0), -1px -1px 20px -10px rgb(255, 234, 0), 1px -1px 20px -10px rgb(255, 234, 0), -1px 1px 20px -10px rgb(255, 234, 0);"

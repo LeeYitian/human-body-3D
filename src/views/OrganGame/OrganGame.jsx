@@ -21,13 +21,21 @@ const OrganGame = () => {
         <>
           <StyledGameCatagory>
             <StyledCatagoryBtn
+              $imgSrc="./assets/gameChoose_chest.png"
+              $disabled
+            />
+            <StyledCatagoryBtn
+              $imgSrc="./assets/gameChoose_abdomen.png"
+              $disabled={false}
               onClick={() => {
                 setSelectedGame("abdominal_puzzle");
                 sendLoadGame("abdominal_puzzle");
               }}
-            >
-              腹腔
-            </StyledCatagoryBtn>
+            />
+            <StyledCatagoryBtn
+              $imgSrc="./assets/gameChoose_pelvic.png"
+              $disabled
+            />
           </StyledGameCatagory>
           <StyledSubBtn>
             <StyledBtn

@@ -4,8 +4,8 @@ import { PATH } from "@/constants/constants";
 
 export const StyledContainer = styled(BGDiv)`
   width: calc(35 * var(--vw));
-  // height: calc(45 * var(--vh));
-  aspect-ratio: 367/265;
+  height: calc(45 * var(--vh));
+  // aspect-ratio: 367/265;
   padding: 4% 2% 2%;
   position: absolute;
   top: 15%;
@@ -25,8 +25,8 @@ export const StyledCloseBtn = styled(BGBtn)`
 
 export const StyledPageBtn = styled.div`
   position: absolute;
-  bottom: 5%;
-  right: 5%;
+  top: -60%;
+  right: 0%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -55,11 +55,11 @@ export const StyledHead = styled.div`
     padding: 2%;
     margin: 1%;
     color: white;
-    border-radius: 8px;
-    border-bottom: 3px solid #5378a0;
+    border-radius: calc(0.8 * var(--vw));
+    border-bottom: calc(0.3 * var(--vw)) solid #5378a0;
     font-size: calc(1.8 * var(--vw));
     min-width: calc(10 * var(--vw));
-    height: calc(8 * var(--vh));
+    height: calc(7 * var(--vh));
     display: flex;
     justify-content: center;
     align-items: center;
@@ -72,7 +72,28 @@ export const StyledHead = styled.div`
 
 export const StyledContent = styled.div`
   width: 100%;
+  max-height: ${(props) => props.$height};
   font-size: calc(2.2 * var(--vw));
   color: #54697a;
   white-space: pre-line;
+  overflow-y: auto;
+`;
+
+export const StyledActionArea = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: calc(10 * var(--vh));
+  position: relative;
+  margin-top: 10%;
+`;
+
+export const StyledActionBtn = styled(BGBtn)`
+  width: 30%;
+  height: 100%;
+  cursor: pointer;
+  &:hover {
+    transform: scale(0.9);
+  }
 `;

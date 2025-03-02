@@ -1,10 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import * as THREE from "three";
 import { TIFFLoader } from "three/examples/jsm/Addons.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader";
 import { MODE } from "@/constants/constants";
 import { useThreejs } from "@/contexts/threejsContext";
+import { StyledLoadingContainer } from "./threejsContainer.style";
 
 const ThreeJSCanvas = ({ mode, threejsRef }) => {
   const { dispatch } = useThreejs();
@@ -127,22 +128,13 @@ const ThreeJSCanvas = ({ mode, threejsRef }) => {
 
   return (
     <>
-      <div
+      <StyledLoadingContainer
         className="loading"
-        style={{
-          position: "absolute",
-          top: "0",
-          bottom: "0",
-          left: "0",
-          right: "0",
-          zIndex: "4",
-          display: loading && mode === MODE["3D"] ? "flex" : "none",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
+        $loading={loading}
+        $mode={mode}
       >
         <img src="./assets/preloader.gif" alt="loading" />
-      </div>
+      </StyledLoadingContainer>
       <canvas
         id="threejsCanvas"
         style={{

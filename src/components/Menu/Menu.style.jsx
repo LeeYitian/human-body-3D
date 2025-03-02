@@ -4,7 +4,7 @@ import { BGBtn } from "@/App.style";
 export const StyledContainer = styled.div`
   position: absolute;
   background-color: #9db0ec;
-  border-radius: 50px;
+  border-radius: calc(10 * var(--vw));
   // height: calc(8 * var(--vh));
   right: 1%;
   bottom: 13%;
@@ -16,7 +16,7 @@ export const StyledContainer = styled.div`
 `;
 
 export const StyledSwitch = styled.div`
-  border-right: 3px solid #54697a;
+  border-right: calc(0.3 * var(--vw)) solid #54697a;
   margin-right: 2%;
   cursor: pointer;
   display: flex;

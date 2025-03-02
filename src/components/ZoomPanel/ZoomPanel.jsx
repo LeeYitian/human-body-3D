@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useState } from "react";
-import * as THREE from "three";
 import {
   StyledContainer,
   StyledFlipBtn,
@@ -11,65 +10,66 @@ import { useThreejs } from "@/contexts/threejsContext";
 import { useMode } from "@/contexts/modeContext";
 import { MODE } from "@/constants/constants";
 
-let originalDistance = null;
-
 const ZoomPanel = ({ position }) => {
   const [input, setInput] = useState(1);
   const [flip, setFlip] = useState(false);
   const { mode } = useMode();
   const {
-    state: { camera, object, controls },
+    state: { camera, object },
   } = useThreejs();
 
   const clickZoom = (value, zoomType, input) => {
     let newFOV = value;
     if (value >= 35 && zoomType === "zoomIn") {
-      newFOV = input ? Math.floor(value - input) : value - 10;
-      newFOV = newFOV < 35 ? 35 : newFOV;
+      newFOV = input ? input : value - 8;
+      newFOV = Math.max(newFOV, 35);
     } else if (value < 75 && zoomType === "zoomOut") {
-      newFOV = input ? Math.floor(value + input) : value + 10;
-      newFOV = newFOV > 75 ? 75 : newFOV;
+      newFOV = input ? input : value + 8;
+      newFOV = Math.min(newFOV, 75);
     }
+    console.log("newFOV", newFOV);
     return newFOV;
   };
 
   const wheelZoom3D = useCallback(
     (e) => {
+      console.log("wheelZoom3D");
       if (!camera) return;
       if (e.deltaY > 0) {
-        camera.fov = clickZoom(camera.fov, "zoomOut", 1.7);
-        setInput(25 - (((camera.fov - 35) * 24) / 40 + 1));
-        camera.updateProjectionMatrix();
+        camera.fov = clickZoom(camera.fov, "zoomOut", camera.fov + 1.7);
       } else if (e.deltaY < 0) {
-        camera.fov = clickZoom(camera.fov, "zoomIn", 1.7);
-        setInput(25 - (((camera.fov - 35) * 24) / 40 + 1));
-        camera.updateProjectionMatrix();
+        camera.fov = clickZoom(camera.fov, "zoomIn", camera.fov - 1.7);
       }
+
+      setInput(1 + (75 - camera.fov) / (40 / 24));
+      camera.updateProjectionMatrix();
     },
     [camera, clickZoom]
   );
 
-  const wheelZoom = (e) => {
-    if (e.deltaY > 0) {
-      sendZoomIn(0.11);
-      setInput(input + 4);
-    } else if (e.deltaY < 0) {
-      sendZoomOut(0.11);
-      setInput(input - 4);
-    }
-  };
+  // const wheelZoom = (e) => {
+  //   if (e.deltaY > 0) {
+  //     sendZoomIn(0.11);
+  //     setInput(input + 4);
+  //   } else if (e.deltaY < 0) {
+  //     sendZoomOut(0.11);
+  //     setInput(input - 4);
+  //   }
+  // };
 
   useEffect(() => {
     if (!camera && mode !== MODE["3D"]) return;
     const canvas = document.getElementById("threejsCanvas");
+    if (!canvas) return;
     canvas.addEventListener("wheel", wheelZoom3D);
   }, [camera, mode]);
 
-  useEffect(() => {
-    if (mode !== MODE["2D"]) return;
-    const canvas = document.getElementById("canvas2D");
-    canvas.addEventListener("wheel", wheelZoom);
-  }, [mode]);
+  // useEffect(() => {
+  //   if (mode !== MODE["2D"]) return;
+  //   const canvas = document.getElementById("canvas2D");
+  //   if (!canvas) return;
+  //   canvas.addEventListener("wheel", wheelZoom);
+  // }, [mode]);
 
   useEffect(() => {
     setInput(1);
@@ -82,12 +82,12 @@ const ZoomPanel = ({ position }) => {
           $imgSrc="./assets/zoomOutBtn.png"
           onClick={() => {
             if (mode === MODE["2D"]) {
-              sendZoomOut();
-              setInput(input - 4);
+              sendZoomOut((2.5 / 24) * input + 1.3958 - 0.5); // 1.3958 是截距由 1.5 - (2.5/24 * 1) 計算而來
+              setInput(Math.max(1, input - 24 / 5));
             } else {
               camera.fov = clickZoom(camera.fov, "zoomOut");
               camera.updateProjectionMatrix();
-              setInput(Math.max(1, input - 5));
+              setInput(Math.max(1, input - 24 / 5));
             }
           }}
         />
@@ -105,16 +105,24 @@ const ZoomPanel = ({ position }) => {
 
               if (delta > 0) {
                 if (mode === MODE["2D"]) {
-                  sendZoomIn(0.11);
+                  sendZoomIn((2.5 / 24) * value + 1.3958); // 1.3958 是截距由 1.5 - (2.5/24 * 1) 計算而來
                 } else {
-                  camera.fov = clickZoom(camera.fov, "zoomIn", 40 / 24);
+                  camera.fov = clickZoom(
+                    camera.fov,
+                    "zoomIn",
+                    75 - ((value - 1) / 24) * 40
+                  );
                   camera.updateProjectionMatrix();
                 }
               } else if (delta < 0) {
                 if (mode === MODE["2D"]) {
-                  sendZoomOut(0.11);
+                  sendZoomOut((2.5 / 24) * value + 1.3958);
                 } else {
-                  camera.fov = clickZoom(camera.fov, "zoomOut", 40 / 24);
+                  camera.fov = clickZoom(
+                    camera.fov,
+                    "zoomOut",
+                    75 - ((value - 1) / 24) * 40
+                  );
                   camera.updateProjectionMatrix();
                 }
               }
@@ -126,12 +134,12 @@ const ZoomPanel = ({ position }) => {
           $imgSrc="./assets/zoomInBtn.png"
           onClick={() => {
             if (mode === MODE["2D"]) {
-              sendZoomIn();
-              setInput(input + 4);
+              sendZoomIn((2.5 / 24) * input + 1.3958 + 0.5);
+              setInput(Math.min(25, input + 24 / 5));
             } else {
               camera.fov = clickZoom(camera.fov, "zoomIn");
               camera.updateProjectionMatrix();
-              setInput(Math.min(25, input + 5));
+              setInput(Math.min(25, input + 24 / 5));
             }
           }}
         />

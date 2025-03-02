@@ -34,6 +34,9 @@ export default [
         { allowConstantExport: true },
       ],
       "react/no-unknown-property": ["error", { ignore: ["css"] }],
+      "no-undefined": "error",
+      "no-unused-vars": "error",
+      "no-undef": "error",
     },
   },
 ];
