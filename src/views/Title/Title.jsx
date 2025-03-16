@@ -18,7 +18,7 @@ const Title = () => {
     <StyledBG $imgSrc="./assets/titleBG.png">
       <StyledInstrucBtn
         $imgSrc="./assets/instructionBtn.png"
-        onClick={() => goto(PATH.Instruction)}
+        onClick={() => window.open("./howTo/index.html", "_blank")}
       ></StyledInstrucBtn>
       <StyledMainAction>
         <StyledMainBtn

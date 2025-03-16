@@ -39,12 +39,12 @@ const App = () => {
     switch (path) {
       case PATH.Title:
         return <Title />;
-      case PATH.Instruction:
-        return (
-          <div style={{ color: "black", fontSize: "20px" }}>
-            操作說明<button onClick={() => goto(PATH.Title)}>回首頁</button>
-          </div>
-        );
+      // case PATH.Instruction:
+      //   return (
+      //     <div style={{ color: "black", fontSize: "20px" }}>
+      //       操作說明<button onClick={() => goto(PATH.Title)}>回首頁</button>
+      //     </div>
+      //   );
       case PATH.Organ:
         return <Main />;
       case PATH.System:

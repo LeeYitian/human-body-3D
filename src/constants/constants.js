@@ -7,6 +7,6 @@ export const PATH = {
   Title: "Title",
   System: "System",
   Organ: "Organ",
-  Instruction: "Instruction",
+  // Instruction: "Instruction",
   OrganGame: "OrganGame",
 };
