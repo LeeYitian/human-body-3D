@@ -1,4 +1,3 @@
-import * as THREE from "three";
 import { usePath } from "@/contexts/pathContext";
 import { useThreejs } from "@/contexts/threejsContext";
 import { useMode } from "@/contexts/modeContext";
@@ -40,7 +39,7 @@ const ORGAN = {
   肝臟: "liver",
   胰臟: "pancreas",
   膽囊: "gallbladder",
-  // 腎臟: "kidney",
+  腎臟: "kidney",
   脾臟: "spleen",
   胃: "stomach",
   大腸: "largeIntestine",
@@ -65,7 +64,7 @@ const SideBar = () => {
     liver: true,
     pancreas: true,
     gallbladder: true,
-    // kidney: true,
+    kidney: true,
     spleen: true,
     stomach: true,
     largeIntestine: true,
@@ -97,21 +96,24 @@ const SideBar = () => {
   };
 
   const selecAll = () => {
-    const shouldSelectAll = Object.values(organs).some(
+    const targets = { ...organs };
+    delete targets.body;
+    delete targets.diaphragm;
+    const shouldSelectAll = Object.values(targets).some(
       (organ) => organ === false
     );
     let temp = {};
-    Object.keys(organs).forEach((organ) => {
+    Object.keys(targets).forEach((organ) => {
       temp[organ] = shouldSelectAll;
     });
-    setOrgans(temp);
+    setOrgans({ ...organs, ...temp });
     if (mode === MODE["3D"]) {
       Object.keys(objects).forEach((key) => {
-        if (!Object.keys(organs).includes(key)) return;
+        if (!Object.keys(targets).includes(key)) return;
         objects[key].forEach((i) => (i.visible = shouldSelectAll));
       });
     } else {
-      const _organs = Object.keys(organs);
+      const _organs = Object.keys(targets);
       shouldSelectAll
         ? sendShowAllObjects(_organs)
         : sendHideAllObjects(_organs);
@@ -122,6 +124,7 @@ const SideBar = () => {
     if (!objects || !organs) return;
     if (mode === MODE["3D"]) {
       Object.keys(objects).forEach((key) => {
+        if (!Object.keys(organs).includes(key)) return;
         objects[key].forEach((i) => (i.visible = organs[key]));
       });
     } else {

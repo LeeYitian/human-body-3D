@@ -47,7 +47,7 @@ const SystemInfoPanel = () => {
   const [modalData, setModalData] = useState();
   const { mode } = useMode();
   const {
-    state: { objects, camera, controls, object },
+    state: { objects },
   } = useThreejs();
   const [tractOrgans, setTractOrgans] = useState({
     mouth: true,
@@ -124,6 +124,8 @@ const SystemInfoPanel = () => {
     if (!objects) return;
     if (mode === MODE["3D"]) {
       Object.keys(objects).forEach((key) => {
+        if (!Object.keys(tractOrgans).includes(key)) return;
+        if (!Object.keys(glandOrgans).includes(key)) return;
         objects[key].forEach(
           (i) => (i.visible = tractOrgans[key] ?? glandOrgans[key])
         );

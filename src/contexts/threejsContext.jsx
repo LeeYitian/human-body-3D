@@ -20,15 +20,18 @@ const threejsReducer = (state, action) => {
           (model) => model.name === "Female_Endocrine_Pancreas_Geo"
         ),
         gallbladder: models.filter(
-          (model) => model.name === "Female_Digestive_Gall_Bladder_Geo"
+          (model) =>
+            model.name === "Male_Anatomy_Pack_V05" &&
+            model.children[0].name === "Male_Digestive_system_group"
         ),
-        // kidney: models.filter(
-        //   (model) =>
-        //     model.name === "Female_Endocrine_Adrenal_Gland_Geo_Right" ||
-        //     model.name === "Female_Endocrine_Adrenal_Gland_Geo_Left"
-        // ),
+        kidney: models.filter(
+          (model) =>
+            model.name === "Male_Anatomy_Pack_V05" &&
+            model.children[0].name ===
+              "Urinary_ReproductiveUrinary_Reproductive"
+        ),
         spleen: models.filter(
-          (model) => model.name === "Female_Lymphatic_Spleen_Geo"
+          (model) => model.name === "Female_Lymphatic_V05_group"
         ),
         stomach: models.filter((model) => model.name === "Stomach"),
         largeIntestine: models.filter((model) => model.name === "Tjocktarm"),

@@ -25,7 +25,7 @@ const menu = {
     { id: "game", src: "./assets/gameBtn.png" },
   ],
   [PATH.System]: [
-    { id: "animation", src: "./assets/playAnimationBtn.png" },
+    // { id: "animation", src: "./assets/playAnimationBtn.png" },
     { id: "intro", src: "./assets/systemIntroBtn.png" },
     {
       id: "mode",

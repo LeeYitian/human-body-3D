@@ -14,6 +14,8 @@ import { PATH } from "@/constants/constants";
 import { useEffect, useState } from "react";
 import { sendUntargetOrgan } from "@/utils/message";
 
+const btnText = ["position", "function", "impact"];
+
 const IntroModal = ({ setShowModal, data }) => {
   const { path, goto } = usePath();
   const [contentIndex, setContentIndex] = useState(0);
@@ -74,7 +76,16 @@ const IntroModal = ({ setShowModal, data }) => {
               ? data?.content[contentIndex][contentPage]
               : ""}
             <StyledActionArea>
-              <StyledActionBtn
+              {data?.content.map((i, index) => (
+                <StyledActionBtn
+                  $imgSrc={`./assets/modal_${btnText[index]}${
+                    contentIndex === index ? "_active" : ""
+                  }.png`}
+                  onClick={() => setContentIndex(index)}
+                  onTouchStart={() => setContentIndex(index)}
+                />
+              ))}
+              {/* <StyledActionBtn
                 $imgSrc={`./assets/modal_position${
                   contentIndex === 0 ? "_active" : ""
                 }.png`}
@@ -94,7 +105,7 @@ const IntroModal = ({ setShowModal, data }) => {
                 }.png`}
                 onClick={() => setContentIndex(2)}
                 onTouchStart={() => setContentIndex(2)}
-              />
+              /> */}
               {data?.content[contentIndex]?.length > 1 && (
                 <StyledPageBtn>
                   <Icon
@@ -108,7 +119,10 @@ const IntroModal = ({ setShowModal, data }) => {
                     icon="bxs:right-arrow"
                     onClick={() =>
                       setContentPage(
-                        Math.min(data?.content.length - 1, contentPage + 1)
+                        Math.min(
+                          data?.content[contentIndex].length - 1,
+                          contentPage + 1
+                        )
                       )
                     }
                     onTouchStart={() =>

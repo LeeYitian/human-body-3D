@@ -6,10 +6,13 @@ import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader";
 import { MODE } from "@/constants/constants";
 import { useThreejs } from "@/contexts/threejsContext";
 import { StyledLoadingContainer } from "./threejsContainer.style";
+import { usePath } from "@/contexts/pathContext";
+import { PATH } from "@/constants/constants";
 
 const ThreeJSCanvas = ({ mode, threejsRef }) => {
   const { dispatch } = useThreejs();
   const [loading, setLoading] = useState(true);
+  const { path } = usePath();
 
   useEffect(() => {
     if (mode !== MODE["3D"] || threejsRef.current) return;
@@ -85,8 +88,37 @@ const ThreeJSCanvas = ({ mode, threejsRef }) => {
       (object) => {
         // object.scale.set(0.8, 0.8, 0.8)
         object.traverse((child) => {
-          if (child.name.includes("Lung")) {
-            child.visible = false;
+          // child.visible = false;
+          // if (child.name.includes("Lung")) {
+          //   child.visible = false;
+          // }
+          if (path === PATH.Organ) {
+            if (
+              child.name === "anus" ||
+              child.name === "esophagus" ||
+              child.name === "Group003" ||
+              child.name === "Group002" ||
+              child.name === "Female_Digestive_Bileduct_Geo" ||
+              child.name === "Female_Digestive_Mouth_Geo" ||
+              child.name === "Female_Digestive_Tongue_Geo" ||
+              child.name === "Stomach_cut" ||
+              child.name === "Tongue"
+            ) {
+              child.visible = false;
+            }
+          }
+
+          if (path === PATH.System) {
+            if (
+              child.name === "Female_Lymphatic_V05_group" ||
+              (child.name === "Male_Anatomy_Pack_V05" &&
+                child.children[0].name ===
+                  "Urinary_ReproductiveUrinary_Reproductive")
+            ) {
+              child.children.forEach((c) => {
+                c.visible = false;
+              });
+            }
           }
         });
         const box = new THREE.Box3().setFromObject(object);
@@ -124,7 +156,7 @@ const ThreeJSCanvas = ({ mode, threejsRef }) => {
     return () => {
       window.removeEventListener("resize", setSize);
     };
-  }, [mode]);
+  }, [mode, path]);
 
   return (
     <>

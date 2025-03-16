@@ -8,9 +8,11 @@ import {
 import { sendZoomIn, sendZoomOut, sendFlip } from "@/utils/message";
 import { useThreejs } from "@/contexts/threejsContext";
 import { useMode } from "@/contexts/modeContext";
-import { MODE } from "@/constants/constants";
+import { usePath } from "@/contexts/pathContext";
+import { MODE, PATH } from "@/constants/constants";
 
 const ZoomPanel = ({ position }) => {
+  const { path } = usePath();
   const [input, setInput] = useState(1);
   const [flip, setFlip] = useState(false);
   const { mode } = useMode();
@@ -27,7 +29,6 @@ const ZoomPanel = ({ position }) => {
       newFOV = input ? input : value + 8;
       newFOV = Math.min(newFOV, 75);
     }
-    console.log("newFOV", newFOV);
     return newFOV;
   };
 
@@ -74,6 +75,13 @@ const ZoomPanel = ({ position }) => {
   useEffect(() => {
     setInput(1);
   }, [mode]);
+
+  useEffect(() => {
+    if (path === PATH.OrganGame) {
+      sendZoomIn((2.5 / 24) * 12 + 1.395);
+      setInput(12);
+    }
+  }, [path]);
 
   return (
     <StyledContainer $position={position}>
