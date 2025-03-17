@@ -2,7 +2,7 @@ let bodyModel;
 let game;
 let path;
 // const zoomStep = [1, 1.5, 2, 3];
-let scale = 1.5;
+let scale = 1;
 let zoomBaseSize = {
   w: 0,
   h: 0,
@@ -58,8 +58,8 @@ function zoomContentInit() {
     y: zoomContent.y,
   };
 
-  zoomContent.scaleX = zoomContent.scaleY = 1.5;
-  zoomContent.y -= 100;
+  zoomContent.scaleX = zoomContent.scaleY = scale;
+  // zoomContent.y -= 100;
 
   zoomContent.addEventListener("mousedown", areaDragDown);
   zoomContent.addEventListener("mousewheel", (e) => console.log("e", e));

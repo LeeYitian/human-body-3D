@@ -65,6 +65,7 @@ export const StyledOrganOption = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 10%;
+  ${(props) => (props.$marginTop ? "margin-top: 30%;" : "")}
   & > span {
     color: white;
     background-color: #6798ad;

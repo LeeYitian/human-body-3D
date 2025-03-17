@@ -6,13 +6,16 @@ export const StyledContainer = styled(BGDiv)`
   width: calc(35 * var(--vw));
   height: calc(45 * var(--vh));
   // aspect-ratio: 367/265;
-  padding: 4% 2% 2%;
+  padding: 1% 2% 2%;
   position: absolute;
   top: 15%;
   left: ${(props) => (props.$path === PATH.Organ ? "55%" : "26%")};
   z-index: 3;
   font-family: "微軟正黑體";
   font-weight: bold;
+  & hr {
+    margin: 0;
+  }
 `;
 
 export const StyledCloseBtn = styled(BGBtn)`
@@ -25,8 +28,9 @@ export const StyledCloseBtn = styled(BGBtn)`
 
 export const StyledPageBtn = styled.div`
   position: absolute;
-  top: -60%;
-  right: 0%;
+  // top: -60%;
+  bottom: 2%;
+  right: 2%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -71,6 +75,7 @@ export const StyledHead = styled.div`
 `;
 
 export const StyledContent = styled.div`
+  position: relative;
   width: 100%;
   max-height: ${(props) => props.$height};
   font-size: calc(2.2 * var(--vw));
@@ -85,9 +90,9 @@ export const StyledActionArea = styled.div`
   justify-content: flex-start;
   gap: 3%;
   width: 100%;
-  height: calc(10 * var(--vh));
+  height: calc(8 * var(--vh));
   position: relative;
-  margin-top: 10%;
+  // margin-top: 10%;
 `;
 
 export const StyledActionBtn = styled(BGBtn)`

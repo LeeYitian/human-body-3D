@@ -71,10 +71,8 @@ const IntroModal = ({ setShowModal, data }) => {
           )}
         </StyledHead>
         {path === PATH.Organ && (
-          <StyledContent $height="70%">
-            {data?.content[contentIndex]
-              ? data?.content[contentIndex][contentPage]
-              : ""}
+          <>
+            <hr />
             <StyledActionArea>
               {data?.content.map((i, index) => (
                 <StyledActionBtn
@@ -85,56 +83,41 @@ const IntroModal = ({ setShowModal, data }) => {
                   onTouchStart={() => setContentIndex(index)}
                 />
               ))}
-              {/* <StyledActionBtn
-                $imgSrc={`./assets/modal_position${
-                  contentIndex === 0 ? "_active" : ""
-                }.png`}
-                onClick={() => setContentIndex(0)}
-                onTouchStart={() => setContentIndex(0)}
-              />
-              <StyledActionBtn
-                $imgSrc={`./assets/modal_function${
-                  contentIndex === 1 ? "_active" : ""
-                }.png`}
-                onClick={() => setContentIndex(1)}
-                onTouchStart={() => setContentIndex(1)}
-              />
-              <StyledActionBtn
-                $imgSrc={`./assets/modal_impact${
-                  contentIndex === 2 ? "_active" : ""
-                }.png`}
-                onClick={() => setContentIndex(2)}
-                onTouchStart={() => setContentIndex(2)}
-              /> */}
-              {data?.content[contentIndex]?.length > 1 && (
-                <StyledPageBtn>
-                  <Icon
-                    icon="bx:left-arrow"
-                    onClick={() => setContentPage(Math.max(0, contentPage - 1))}
-                    onTouchStart={() =>
-                      setContentPage(Math.max(0, contentPage - 1))
-                    }
-                  />
-                  <Icon
-                    icon="bxs:right-arrow"
-                    onClick={() =>
-                      setContentPage(
-                        Math.min(
-                          data?.content[contentIndex].length - 1,
-                          contentPage + 1
-                        )
-                      )
-                    }
-                    onTouchStart={() =>
-                      setContentPage(
-                        Math.min(data?.content.length - 1, contentPage + 1)
-                      )
-                    }
-                  />
-                </StyledPageBtn>
-              )}
             </StyledActionArea>
-          </StyledContent>
+            <StyledContent $height="70%">
+              {data?.content[contentIndex]
+                ? data?.content[contentIndex][contentPage]
+                : ""}
+            </StyledContent>
+
+            {data?.content[contentIndex]?.length > 1 && (
+              <StyledPageBtn>
+                <Icon
+                  icon="bx:left-arrow"
+                  onClick={() => setContentPage(Math.max(0, contentPage - 1))}
+                  onTouchStart={() =>
+                    setContentPage(Math.max(0, contentPage - 1))
+                  }
+                />
+                <Icon
+                  icon="bxs:right-arrow"
+                  onClick={() =>
+                    setContentPage(
+                      Math.min(
+                        data?.content[contentIndex].length - 1,
+                        contentPage + 1
+                      )
+                    )
+                  }
+                  onTouchStart={() =>
+                    setContentPage(
+                      Math.min(data?.content.length - 1, contentPage + 1)
+                    )
+                  }
+                />
+              </StyledPageBtn>
+            )}
+          </>
         )}
         {path === PATH.System && (
           <>

@@ -74,7 +74,7 @@ const SideBar = () => {
     body: true,
   });
   const {
-    state: { objects, camera },
+    state: { objects },
   } = useThreejs();
 
   const handleCheckBox = (organ) => {
@@ -117,6 +117,26 @@ const SideBar = () => {
       shouldSelectAll
         ? sendShowAllObjects(_organs)
         : sendHideAllObjects(_organs);
+    }
+  };
+
+  const showOrganOnly = (organ) => {
+    if (mode === MODE["3D"]) {
+      const organNames = Object.keys(organs);
+      organNames.forEach((o) => {
+        objects[o].forEach((i) => (i.visible = true));
+      });
+
+      organNames.forEach((o) => {
+        if (o === organ || o === "body" || o === "diaphragm") return;
+        objects[o].forEach((i) => (i.visible = false));
+      });
+    } else {
+      sendShowAllObjects(Object.keys(organs));
+      const otherOrgans = Object.keys(organs).filter(
+        (o) => o !== organ && o !== "body" && o !== "diaphragm"
+      );
+      sendHideAllObjects(otherOrgans);
     }
   };
 
@@ -174,25 +194,7 @@ const SideBar = () => {
                         setShowModal(true);
                         setModalData(data.find((i) => i.id === ORGAN[key]));
                         sendTargetOrgan(ORGAN[key]);
-
-                        //3D 模型位置調整
-                        // const targetPosition = new THREE.Vector3();
-                        // objects[ORGAN[key]].getWorldPosition(targetPosition);
-
-                        // controls.target.set(
-                        //   targetPosition.x,
-                        //   targetPosition.y,
-                        //   targetPosition.z
-                        // );
-
-                        // 設置相機位置
-                        // camera.position.set(
-                        //   targetPosition.x,
-                        //   targetPosition.y,
-                        //   camera.position.z
-                        // );
-
-                        // camera.lookAt(targetPosition);
+                        showOrganOnly(ORGAN[key]);
                       }}
                     >
                       {key}
@@ -238,7 +240,7 @@ const SideBar = () => {
             />
             <StyledBtn
               $imgSrc="./assets/instructionBtn.png"
-              onClick={() => goto(PATH.Instruction)}
+              onClick={() => window.open("./howTo/index.html", "_blank")}
             />
           </StyledBottomAction>
         </StyledBottom>
@@ -264,6 +266,9 @@ const SideBar = () => {
               sendTargetOrgan(
                 data[nextIndex < 0 ? data.length - 1 : nextIndex].id
               );
+              showOrganOnly(
+                data[nextIndex < 0 ? data.length - 1 : nextIndex].id
+              );
             }}
           />
         </StyledSideArrow>
@@ -277,6 +282,9 @@ const SideBar = () => {
               const nextIndex = currentIndex !== -1 ? currentIndex + 1 : 0;
               setModalData(data[nextIndex > data.length - 1 ? 0 : nextIndex]);
               sendTargetOrgan(
+                data[nextIndex > data.length - 1 ? 0 : nextIndex].id
+              );
+              showOrganOnly(
                 data[nextIndex > data.length - 1 ? 0 : nextIndex].id
               );
             }}

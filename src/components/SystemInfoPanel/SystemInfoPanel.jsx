@@ -34,15 +34,17 @@ const INFO = {
   消化腺: {
     唾腺: "salivaryGland",
     胃腺: "gastricGland",
-    膽囊: "gallbladder",
     肝臟: "liver",
     胰臟: "pancreas",
     腸腺: "intestinalGland",
+    膽囊: "gallbladder",
   },
 };
 const SystemInfoPanel = () => {
   const [openPanel, setOpenPanel] = useState(true);
   const [showModal, setShowModal] = useState(false);
+  const [panelPosition, setPanelPosition] = useState({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState(false);
   const { data } = useData();
   const [modalData, setModalData] = useState();
   const { mode } = useMode();
@@ -69,7 +71,11 @@ const SystemInfoPanel = () => {
 
   const handleCheckBox = (system, organ) => {
     if (mode === MODE["3D"]) {
-      const tempObj = objects[organ];
+      let tempObj = objects[organ];
+      if (organ === "largeIntestine") {
+        tempObj = [...objects[organ], ...objects["cecum"]];
+      }
+
       if (tempObj && tempObj.length) {
         tempObj.forEach((obj) => (obj.visible = !obj.visible));
       } else if (tempObj === undefined || tempObj.length === 0) {
@@ -150,12 +156,32 @@ const SystemInfoPanel = () => {
 
   return (
     <>
-      <StyledMainBtn
-        $open={openPanel}
-        $imgSrc="./assets/informationBtn.png"
-        onClick={() => setOpenPanel(!openPanel)}
-      />
-      <Draggable>
+      <Draggable
+        position={{ x: panelPosition.x, y: panelPosition.y }}
+        onStart={() => setIsDragging(false)}
+        onDrag={() => setIsDragging(true)}
+        onStop={(_, data) => {
+          setPanelPosition({ x: data.x, y: data.y });
+        }}
+      >
+        <StyledMainBtn
+          $open={openPanel}
+          $imgSrc="./assets/informationBtn.png"
+          onClick={() => {
+            if (isDragging) return;
+            setOpenPanel(!openPanel);
+          }}
+        />
+      </Draggable>
+      <Draggable
+        position={panelPosition}
+        onStop={(_, data) => {
+          setPanelPosition({
+            x: data.x,
+            y: data.y,
+          });
+        }}
+      >
         <StyledInfoPanel $open={openPanel}>
           <StyledMainBtn
             $imgSrc="./assets/informationBtn.png"
@@ -178,7 +204,10 @@ const SystemInfoPanel = () => {
                       ? tractOrgans[INFO[system][organ]]
                       : glandOrgans[INFO[system][organ]];
                   return (
-                    <StyledOrganOption key={organ}>
+                    <StyledOrganOption
+                      key={organ}
+                      $marginTop={organ === "膽囊"}
+                    >
                       <CheckBox
                         checked={checked}
                         updateState={() =>
@@ -194,25 +223,6 @@ const SystemInfoPanel = () => {
                           if (mode === MODE["2D"]) {
                             sendTargetOrgan(INFO[system][organ]);
                           }
-                          // else {
-                          //   const targetPosition = new THREE.Vector3();
-                          //   objects[ORGAN[key]].getWorldPosition(targetPosition);
-
-                          //   // controls.target.set(
-                          //   //   targetPosition.x,
-                          //   //   targetPosition.y,
-                          //   //   targetPosition.z
-                          //   // );
-
-                          //   // 設置相機位置
-                          //   camera.position.set(
-                          //     targetPosition.x,
-                          //     targetPosition.y,
-                          //     camera.position.z
-                          //   );
-
-                          //   camera.lookAt(targetPosition);
-                          // }
                         }}
                       >
                         {organ}

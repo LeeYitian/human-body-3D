@@ -17,7 +17,7 @@ export const StyledTitle = styled(BGDiv)`
   aspect-ratio: 356/89;
   position: absolute;
   top: 0;
-  left: -40%;
+  left: -38%;
 `;
 
 export const StyledBottom = styled.div`
@@ -27,7 +27,7 @@ export const StyledBottom = styled.div`
   height: ${(props) => (props.$path === PATH.Organ ? "25%" : "20%")};
   position: absolute;
   bottom: 0;
-  left: -5%;
+  left: -2%;
   ${(props) =>
     props.$path === PATH.Organ
       ? " box-shadow: 8px -20px 10px -10px rgba(0, 0, 0, 0.15);"
@@ -42,7 +42,7 @@ export const StyledSwitch = styled.div`
   border-radius: 0px calc(1 * var(--vw)) calc(1 * var(--vw)) 0px;
   position: absolute;
   bottom: 2%;
-  right: -9%;
+  right: -12%;
   cursor: pointer;
 `;
 
@@ -51,7 +51,8 @@ export const StyledBottomAction = styled.div`
   justify-content: flex-start;
   gap: 5%;
   width: 100%;
-  padding: 0 0 0 11%;
+  padding: 0 0 0 19%;
+  margin-top: 2%;
 `;
 
 export const StyledBtn = styled(BGBtn)`
@@ -133,7 +134,7 @@ export const StyledPanelOption = styled.div`
   align-items: center;
   font-size: calc(3.5 * var(--vh));
   margin-bottom: 3%;
-  padding-left: 4%;
+  padding-left: 17%;
   & > span {
     color: white;
     // background-color: #bdf4ed;

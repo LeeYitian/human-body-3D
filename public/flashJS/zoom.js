@@ -18,7 +18,7 @@ function setZoom(type, value) {
       break;
     case "zoomOut":
       // if (value) {
-      scale = Math.max(1.5, value);
+      scale = Math.max(1, value);
       // } else {
       //   scale = Math.max(1.5, scale - 0.5);
       // }
@@ -27,10 +27,10 @@ function setZoom(type, value) {
       // offsetY = originalY + zoomBaseSize.h / 4;
       break;
     default:
-      scale = 1.5;
+      scale = 1;
   }
   zoomContent.scaleX = zoomContent.scaleY = scale;
-  if (scale === 1.5) {
+  if (scale === 1) {
     // 如果縮放回原始大小，位置也要調回原始位置
     zoomContent.x = zoomContentXY.x;
     zoomContent.y = zoomContentXY.y;
@@ -46,7 +46,7 @@ function areaDragDown(e) {
   // var point = { x: e.stageX, y: e.stageY };
   var point = zoomContent.globalToLocal(e.stageX, e.stageY);
 
-  if (zoomContent.scaleX === 1.5 || zoomContent.scaleX === -1.5) return;
+  // if (zoomContent.scaleX === 1.5 || zoomContent.scaleX === -1.5) return;
   zoomContent.dX = point.x - zoomContent.x;
   zoomContent.dY = point.y - zoomContent.y;
   zoomContent.baseX = point.x;

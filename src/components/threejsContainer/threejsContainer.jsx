@@ -92,6 +92,8 @@ const ThreeJSCanvas = ({ mode, threejsRef }) => {
           // if (child.name.includes("Lung")) {
           //   child.visible = false;
           // }
+
+          //根據不同的頁面隱藏不同的器官
           if (path === PATH.Organ) {
             if (
               child.name === "anus" ||

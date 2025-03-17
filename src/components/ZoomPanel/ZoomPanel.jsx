@@ -9,7 +9,7 @@ import { sendZoomIn, sendZoomOut, sendFlip } from "@/utils/message";
 import { useThreejs } from "@/contexts/threejsContext";
 import { useMode } from "@/contexts/modeContext";
 import { usePath } from "@/contexts/pathContext";
-import { MODE, PATH } from "@/constants/constants";
+import { MODE } from "@/constants/constants";
 
 const ZoomPanel = ({ position }) => {
   const { path } = usePath();
@@ -77,11 +77,24 @@ const ZoomPanel = ({ position }) => {
   }, [mode]);
 
   useEffect(() => {
-    if (path === PATH.OrganGame) {
-      sendZoomIn((2.5 / 24) * 12 + 1.395);
-      setInput(12);
+    // if (path === PATH.OrganGame) {
+    // sendZoomIn((3 / 24) * 12 + 0.8958);
+    // setInput(12);
+    // }
+    if (mode === MODE["3D"]) {
+      if (!camera) return;
+      setTimeout(() => {
+        camera.fov = clickZoom(camera.fov, "zoomIn", 75 - ((12 - 1) / 24) * 40);
+        camera.updateProjectionMatrix();
+        setInput(12);
+      }, 500);
+    } else {
+      setTimeout(() => {
+        sendZoomIn((3 / 24) * 12 + 0.8958);
+        setInput(12);
+      }, 500);
     }
-  }, [path]);
+  }, [path, mode, camera]);
 
   return (
     <StyledContainer $position={position}>
@@ -90,7 +103,7 @@ const ZoomPanel = ({ position }) => {
           $imgSrc="./assets/zoomOutBtn.png"
           onClick={() => {
             if (mode === MODE["2D"]) {
-              sendZoomOut((2.5 / 24) * input + 1.3958 - 0.5); // 1.3958 是截距由 1.5 - (2.5/24 * 1) 計算而來
+              sendZoomOut((3 / 24) * input + 0.8958 - 0.6); // 0.8958 是截距由 1 - (2.5/24 * 1) 計算而來
               setInput(Math.max(1, input - 24 / 5));
             } else {
               camera.fov = clickZoom(camera.fov, "zoomOut");
@@ -113,7 +126,7 @@ const ZoomPanel = ({ position }) => {
 
               if (delta > 0) {
                 if (mode === MODE["2D"]) {
-                  sendZoomIn((2.5 / 24) * value + 1.3958); // 1.3958 是截距由 1.5 - (2.5/24 * 1) 計算而來
+                  sendZoomIn((3 / 24) * value + 0.8958); // 0.8958 是截距由 1 - (2.5/24 * 1) 計算而來
                 } else {
                   camera.fov = clickZoom(
                     camera.fov,
@@ -124,7 +137,7 @@ const ZoomPanel = ({ position }) => {
                 }
               } else if (delta < 0) {
                 if (mode === MODE["2D"]) {
-                  sendZoomOut((2.5 / 24) * value + 1.3958);
+                  sendZoomOut((3 / 24) * value + 0.8958);
                 } else {
                   camera.fov = clickZoom(
                     camera.fov,
@@ -142,7 +155,7 @@ const ZoomPanel = ({ position }) => {
           $imgSrc="./assets/zoomInBtn.png"
           onClick={() => {
             if (mode === MODE["2D"]) {
-              sendZoomIn((2.5 / 24) * input + 1.3958 + 0.5);
+              sendZoomIn((3 / 24) * input + 0.8958 + 0.6);
               setInput(Math.min(25, input + 24 / 5));
             } else {
               camera.fov = clickZoom(camera.fov, "zoomIn");
