@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import * as THREE from "three";
 import {
   StyledInfoPanel,
   StyledMainBtn,
@@ -76,6 +75,47 @@ const SystemInfoPanel = () => {
         tempObj = [...objects[organ], ...objects["cecum"]];
       }
 
+      if (organ === "stomach") {
+        const gland = objects["gastricGland"];
+        if (gland && gland.length) {
+          gland.forEach((g) => {
+            g.visible = true;
+          });
+        }
+        tempObj.forEach((obj) => {
+          obj.traverse((child) => {
+            if (child.isMesh) {
+              child.material.transparent = true; // 啟用透明效果
+              child.material.opacity = 0.5; // 設定透明度 (0: 完全透明, 1: 完全不透明)
+            }
+          });
+        });
+      } else if (organ === "largeIntestine") {
+        const gland = objects["intestinalGland"];
+        if (gland && gland.length) {
+          gland.forEach((g) => {
+            g.visible = true;
+          });
+        }
+        tempObj.forEach((obj) => {
+          obj.traverse((child) => {
+            if (child.isMesh) {
+              child.material.transparent = true; // 啟用透明效果
+              child.material.opacity = 0.5; // 設定透明度 (0: 完全透明, 1: 完全不透明)
+            }
+          });
+        });
+      } else if (organ === "gastricGland") {
+        const organ = objects["stomach"];
+        if (organ && organ.length) {
+          organ.traverse((child) => {
+            if (child.isMesh && child.material.opacity !== 1) {
+              child.material.transparent = true; // 啟用透明效果
+              child.material.opacity = 1; // 設定透明度 (0: 完全透明, 1: 完全不透明)
+            }
+          });
+        }
+      }
       if (tempObj && tempObj.length) {
         tempObj.forEach((obj) => (obj.visible = !obj.visible));
       } else if (tempObj === undefined || tempObj.length === 0) {

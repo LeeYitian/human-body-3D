@@ -92,7 +92,7 @@ export const StyledOrganPanel = styled.div`
 `;
 
 export const StyledPanelHeader = styled.div`
-  background-color: #79b6ef;
+  background-color: #f8b29e;
   width: 100%;
   height: calc(8 * var(--vh));
   border-radius: ${(props) =>
@@ -118,7 +118,7 @@ export const StyledPanelHeader = styled.div`
 
 export const StyledPanelContent = styled.div`
   ${(props) => (props.$open ? "display: flex;" : "display: none;")}
-  background-color: #79b6ef;
+  background-color: #f8b29e;
   width: 100%;
   border-radius: 0px 0px calc(1 * var(--vw)) calc(1 * var(--vw));
   // display: flex;

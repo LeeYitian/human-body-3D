@@ -124,7 +124,10 @@ const SideBar = () => {
     if (mode === MODE["3D"]) {
       const organNames = Object.keys(organs);
       organNames.forEach((o) => {
-        objects[o].forEach((i) => (i.visible = true));
+        objects[o].forEach((i) => {
+          if (i === "body" || i === "diaphragm") return;
+          i.visible = true;
+        });
       });
 
       organNames.forEach((o) => {
@@ -132,7 +135,9 @@ const SideBar = () => {
         objects[o].forEach((i) => (i.visible = false));
       });
     } else {
-      sendShowAllObjects(Object.keys(organs));
+      sendShowAllObjects(
+        Object.keys(organs).filter((o) => o !== "body" && o !== "diaphragm")
+      );
       const otherOrgans = Object.keys(organs).filter(
         (o) => o !== organ && o !== "body" && o !== "diaphragm"
       );

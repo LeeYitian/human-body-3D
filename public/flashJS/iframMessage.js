@@ -15,8 +15,57 @@ window.addEventListener("message", (e) => {
         (child) => child.name && child.name.includes(e.data.value)
       );
       if (object) {
-        object.visible = !object.visible;
-        if (!object.visible) {
+        if (e.data.value === "stomach") {
+          const gland = bodyModel.children.find(
+            (child) => child.name && child.name.includes("gastricGland")
+          );
+          if (gland && !gland.visible) {
+            object.alpha = 0.5;
+            gland.visible = true;
+          } else if (gland && gland.visible) {
+            object.alpha = 1;
+            gland.visible = false;
+          }
+        } else if (e.data.value === "largeIntestine") {
+          const gland = bodyModel.children.find(
+            (child) => child.name && child.name.includes("intestinalGland")
+          );
+          if (gland && !gland.visible) {
+            object.alpha = 0.5;
+            gland.visible = true;
+          } else if (gland && gland.visible) {
+            object.alpha = 1;
+            gland.visible = false;
+          }
+        } else if (e.data.value === "gastricGland") {
+          const organ = bodyModel.children.find(
+            (child) => child.name && child.name.includes("stomach")
+          );
+          if (organ && organ.visible) {
+            organ.alpha = 1;
+            organ.visible = false;
+          } else if (organ && !organ.visible) {
+            organ.alpha = 0.5;
+            organ.visible = true;
+          }
+          object.visible = !object.visible;
+        } else if (e.data.value === "intestinalGland") {
+          const organ = bodyModel.children.find(
+            (child) => child.name && child.name.includes("largeIntestine")
+          );
+          if (organ && organ.visible) {
+            organ.alpha = 1;
+            organ.visible = false;
+          } else if (organ && !organ.visible) {
+            organ.alpha = 0.5;
+            organ.visible = true;
+          }
+          object.visible = !object.visible;
+        } else {
+          object.visible = !object.visible;
+        }
+
+        if (!object.visible || object.alpha !== 1) {
           hideOrgans.push(object.name.split("_")[0]);
         } else {
           hideOrgans = hideOrgans.filter(

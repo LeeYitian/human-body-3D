@@ -80,7 +80,9 @@ function bodyModelInit() {
     }
     if (
       (child.name && child.name.includes("lung")) ||
-      (child.name && child.name.includes("mouth") && path === "Organ")
+      (child.name && child.name.includes("mouth") && path === "Organ") ||
+      (child.name && child.name === "gastricGland") ||
+      (child.name && child.name === "intestinalGland")
     ) {
       child.visible = false;
     }

@@ -1,10 +1,13 @@
 import styled from "styled-components";
-import { BGDiv, BGBtn } from "@/App.style";
+import { BGBtn } from "@/App.style";
 import { PATH } from "@/constants/constants";
 
-export const StyledContainer = styled(BGDiv)`
+export const StyledContainer = styled.div`
   width: calc(35 * var(--vw));
-  height: calc(45 * var(--vh));
+  background-color: #edece6;
+  border: 2px solid #84a8ad;
+  border-radius: calc(2 * var(--vw));
+  min-height: calc(45 * var(--vh));
   // aspect-ratio: 367/265;
   padding: 1% 2% 2%;
   position: absolute;
@@ -92,7 +95,7 @@ export const StyledActionArea = styled.div`
   width: 100%;
   height: calc(8 * var(--vh));
   position: relative;
-  // margin-top: 10%;
+  margin-top: 1%;
 `;
 
 export const StyledActionBtn = styled(BGBtn)`

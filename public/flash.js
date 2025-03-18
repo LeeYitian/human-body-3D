@@ -611,6 +611,29 @@ p.nominalBounds = new cjs.Rectangle(30,-19,66.9,38.5);
 p.nominalBounds = new cjs.Rectangle(-34,-19,67.2,38.7);
 
 
+(lib.胃腺 = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{});
+
+	// 圖層_1
+	this.shape = new cjs.Shape();
+	this.shape.graphics.f("#000000").s().p("AhPBEQAHgSAAgpIAAhTIAuAAIAACLQAAAFgDAEQgDAFgOAAIgGAAIgEgQIAJAAIAFAAQABgBAAAAQAAAAAAgBQABAAAAAAQAAgBAAAAIAAgpQgFAHgIAIIgEgJQgCAggHAWgAg5AQQAIgJAJgMIAAgLIgLAFQgCgKgEgJgAgogYIAAgkIgRAAIAAAVIAIgFQAFAJAEALgAAVBPIgPAAIgEgQIAMABQAFAAABgBIABgDIAAhAIggAAIAAg9IAXAAQAEgFAEgIIAQADIgGAKIAoAAIAAA9IghAAIAAAOIAFANQALgIAKgMIAMAIQgLAPgNAJQAJANAUAPIgKAMQgWgRgLgSIAAAaQAAAGgEADQgEAEgHAAIgBAAgAADgRIAzAAIAAgMIgzAAgAADgpIAzAAIAAgKIgzAAgAgWBCQATgUADgXIgTAAIAAgOIAjAAQAAAlgaAdg");
+	this.shape.setTransform(154.775,14.375);
+
+	this.shape_1 = new cjs.Shape();
+	this.shape_1.graphics.f("#000000").s().p("AhHBEQAQgNAAgeIAAgiIB2AAIAABGQAAAKgFADQgHADgQAAIgMAAIgGgQIAQABQALAAABgBQABAAAAAAQAAgBABAAQAAAAAAgBQAAAAAAgBIAAgQQguAMgmAFIgDgKQgGASgLALgAgoAtQAogFAvgMIAAgXIhVAAIAAAIQAeAAAmADIgDAOQgfgEgiAAIgCATgAhDgTIAAg6ICKAAIAAA6gAAJggIAvAAIAAgKIgvAAgAg0ggIAvAAIAAgKIgvAAgAAJg3IAvAAIAAgJIgvAAgAg0g3IAvAAIAAgJIgvAAg");
+	this.shape_1.setTransform(136.6,14.575);
+
+	this.shape_2 = new cjs.Shape();
+	this.shape_2.graphics.f().s("#000000").ss(1,1,1).p("ApkAAITJAA");
+	this.shape_2.setTransform(61.3,14.05);
+
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.shape_2},{t:this.shape_1},{t:this.shape}]}).wait(1));
+
+	this._renderFirstFrame();
+
+}).prototype = getMCSymbolPrototype(lib.胃腺, new cjs.Rectangle(-1,0,166.9,28), null);
+
+
 (lib.胃反 = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
@@ -1060,6 +1083,29 @@ p.nominalBounds = new cjs.Rectangle(-47,-28,84.4,101.2);
 	this._renderFirstFrame();
 
 }).prototype = getMCSymbolPrototype(lib.人體輪廓_正, new cjs.Rectangle(-743,-117,1920,1080), null);
+
+
+(lib.腸線 = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{});
+
+	// 圖層_1
+	this.shape = new cjs.Shape();
+	this.shape.graphics.f("#000000").s().p("AADBAIAQAAQAEgBAAgCIAAhAIghAAIAAg7IAVAAQAFgHADgJIAQADIgGANIAoAAIAAA7IgeAAIAAANIAFAKQAIgFALgMIALAKQgJAJgNALQAKAOASAOIgLAOQgQgNgOgYIAAAbQAAAIgHADQgGAEgTAAgAAFgPIAxAAIAAgLIgxAAgAAFgnIAxAAIAAgKIgxAAgAhPBKQAHgTAEgVIANADQgEAZgHARgAgYBBQAYgTAEgYIgSAAIAAgOIAhAAQABAjghAggAgyAlIANgDQAFAUABASIgOADQAAgSgFgUgAgfAiIAMgEQAFAKADAKIgMAEQgCgKgGgKgAhOASQARgOAOgUIgaAEIgDgMQASgVAOgiIAOAGQgJAWgQAWIARgCQAGgHAFgLIAOAGQgUAkgVAVIATgFIgDgIIAMgEQAHAOADAOIgMAEIgCgIQgUAGgYAEg");
+	this.shape.setTransform(29.125,14.325);
+
+	this.shape_1 = new cjs.Shape();
+	this.shape_1.graphics.f("#000000").s().p("AhOBCQAGgSAAgUIAAhpIAuAAIAACKQAAAJgEAEQgFADgQgBIgFgOIAGAAQAHAAACgCQAAAAAAAAQABAAAAgBQAAAAAAgBQAAAAAAgBIAAgqQgFAJgHAHIgFgIQgBAhgIAVgAg5ANQAHgGAKgOIAAgMIgLAIIgGgVgAgogYIAAgkIgRAAIAAAUIAIgHIAJAXgAAqBMIgEgOIAJAAQAHAAABgBIADgMIACgZIgEAAQgMAegjAWIgJgLQAcgSAMgXIgJAAQgOAWgdAQIgKgNQAXgKANgPIgLAAQgJAIgIAFIgJgOQARgHALgOIgYAAIAAgNIBiAAIAAANIg4AAIgGAJIA7AAQAAAVgCAQQgCARgCADQgCAFgEABQgEADgGAAIgMgBgAgLgUIAAg5IBSAAIAAA5gAAEghIAzAAIAAgJIgzAAgAAEg3IAzAAIAAgHIgzAAg");
+	this.shape_1.setTransform(10.975,14.6);
+
+	this.shape_2 = new cjs.Shape();
+	this.shape_2.graphics.f().s("#000000").ss(1,1,1).p("AKWAAI0rAA");
+	this.shape_2.setTransform(107.55,15.85);
+
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.shape_2},{t:this.shape_1},{t:this.shape}]}).wait(1));
+
+	this._renderFirstFrame();
+
+}).prototype = getMCSymbolPrototype(lib.腸線, new cjs.Rectangle(0,0,174.8,28), null);
 
 
 (lib.腎臟_反 = function(mode,startPosition,loop) {
@@ -1517,6 +1563,14 @@ p.nominalBounds = new cjs.Rectangle(-925.8,-790.9,1922,1095);
 	this.initialize(mode,startPosition,loop,{});
 
 	// 圖層_1
+	this.intestinalGland = new lib.腸線();
+	this.intestinalGland.name = "intestinalGland";
+	this.intestinalGland.setTransform(-160.85,-122.15,1,1,0,0,0,87.1,14);
+
+	this.gastricGland = new lib.胃腺();
+	this.gastricGland.name = "gastricGland";
+	this.gastricGland.setTransform(134.7,-199.6,1,1,0,0,0,82.7,14);
+
 	this.salivaryGland = new lib.唾腺_正();
 	this.salivaryGland.name = "salivaryGland";
 	this.salivaryGland.setTransform(-1.1,-527.4,1,1,0,0,0,73.9,41.6);
@@ -1613,7 +1667,7 @@ p.nominalBounds = new cjs.Rectangle(-925.8,-790.9,1922,1095);
 	this.stomach_1.name = "stomach_1";
 	this.stomach_1.setTransform(9.3,-323.65,0.9696,0.9696);
 
-	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.diaphragm},{t:this.pancreas},{t:this.esophagus},{t:this.smallIntestine},{t:this.stomach},{t:this.anus},{t:this.largeIntestine},{t:this.gallbladder},{t:this.liver},{t:this.mouth},{t:this.lung},{t:this.salivaryGland}]}).to({state:[{t:this.stomach_1},{t:this.smallIntestine_1},{t:this.anus_1},{t:this.largeIntestine_1},{t:this.pancreas_1},{t:this.diaphragm_1},{t:this.lung_1},{t:this.esophagus_1},{t:this.mouth_1},{t:this.liver_1},{t:this.gallbladder_1},{t:this.salivaryGland_1}]},1).wait(1));
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.diaphragm},{t:this.pancreas},{t:this.esophagus},{t:this.smallIntestine},{t:this.stomach},{t:this.anus},{t:this.largeIntestine},{t:this.gallbladder},{t:this.liver},{t:this.mouth},{t:this.lung},{t:this.salivaryGland},{t:this.gastricGland},{t:this.intestinalGland}]}).to({state:[{t:this.stomach_1},{t:this.smallIntestine_1},{t:this.anus_1},{t:this.largeIntestine_1},{t:this.pancreas_1},{t:this.diaphragm_1},{t:this.lung_1},{t:this.esophagus_1},{t:this.mouth_1},{t:this.liver_1},{t:this.gallbladder_1},{t:this.salivaryGland_1}]},1).wait(1));
 
 	// BODY_png
 	this.body = new lib.人體輪廓_正();

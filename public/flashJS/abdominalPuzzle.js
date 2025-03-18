@@ -17,6 +17,7 @@ let offsetY;
 let checkedPuzzles = [];
 
 function abdominalPuzzleInit() {
+  checkedPuzzles = [];
   bodyModel = zoomContent.getChildByName("bodyModel");
   bodyModel.isGaming = true;
   bodyModel.gotoAndStop(0);

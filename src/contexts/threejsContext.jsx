@@ -59,6 +59,12 @@ const threejsReducer = (state, action) => {
         body: models.filter(
           (model) => model.name === "m_med_nrw_combined_lod0_mesh"
         ),
+        gastricGland: models.filter(
+          (model) => model.name === "Text001" || model.name === "Box001"
+        ),
+        intestinalGland: models.filter(
+          (model) => model.name === "Text002" || model.name === "Box002"
+        ),
       };
       // Object.keys(obj).forEach((key) => {
       //   obj[key].customName = key;
