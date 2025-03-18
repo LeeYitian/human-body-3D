@@ -77,45 +77,35 @@ const SystemInfoPanel = () => {
 
       if (organ === "stomach") {
         const gland = objects["gastricGland"];
-        if (gland && gland.length) {
+        if (gland.length && glandOrgans.gastricGland) {
           gland.forEach((g) => {
-            g.visible = true;
+            g.visible = !g.visible;
           });
         }
-        tempObj.forEach((obj) => {
-          obj.traverse((child) => {
-            if (child.isMesh) {
-              child.material.transparent = true; // 啟用透明效果
-              child.material.opacity = 0.5; // 設定透明度 (0: 完全透明, 1: 完全不透明)
-            }
-          });
-        });
       } else if (organ === "largeIntestine") {
         const gland = objects["intestinalGland"];
-        if (gland && gland.length) {
+        if (gland && glandOrgans.intestinalGland) {
           gland.forEach((g) => {
-            g.visible = true;
+            g.visible = !g.visible;
           });
         }
-        tempObj.forEach((obj) => {
-          obj.traverse((child) => {
-            if (child.isMesh) {
-              child.material.transparent = true; // 啟用透明效果
-              child.material.opacity = 0.5; // 設定透明度 (0: 完全透明, 1: 完全不透明)
-            }
-          });
-        });
       } else if (organ === "gastricGland") {
-        const organ = objects["stomach"];
-        if (organ && organ.length) {
-          organ.traverse((child) => {
-            if (child.isMesh && child.material.opacity !== 1) {
-              child.material.transparent = true; // 啟用透明效果
-              child.material.opacity = 1; // 設定透明度 (0: 完全透明, 1: 完全不透明)
-            }
-          });
+        if (tractOrgans.stomach) {
+          tempObj = [...objects["stomach"], ...objects["alphaStomach"]];
+        } else {
+          tempObj = [...objects["alphaStomach"], ...tempObj];
+        }
+      } else if (organ === "intestinalGland") {
+        if (tractOrgans.largeIntestine) {
+          tempObj = [
+            ...objects["largeIntestine"],
+            ...objects["alphaLargeIntestine"],
+          ];
+        } else {
+          tempObj = [...objects["alphaLargeIntestine"], ...tempObj];
         }
       }
+
       if (tempObj && tempObj.length) {
         tempObj.forEach((obj) => (obj.visible = !obj.visible));
       } else if (tempObj === undefined || tempObj.length === 0) {

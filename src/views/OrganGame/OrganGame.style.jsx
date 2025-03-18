@@ -32,9 +32,10 @@ export const StyledCatagoryBtn = styled(BGBtn)`
 
 export const StyledSubBtn = styled.div`
   position: absolute;
-  bottom: 3%;
-  left: 3%;
+  bottom: 8%;
+  left: 1%;
   display: flex;
+  flex-direction: column;
   gap: 3%;
 `;
 

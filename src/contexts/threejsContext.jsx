@@ -65,6 +65,10 @@ const threejsReducer = (state, action) => {
         intestinalGland: models.filter(
           (model) => model.name === "Text002" || model.name === "Box002"
         ),
+        alphaStomach: models.filter((model) => model.name === "Stomach_clear"),
+        alphaLargeIntestine: models.filter(
+          (model) => model.name === "Tjocktarm_clear"
+        ),
       };
       // Object.keys(obj).forEach((key) => {
       //   obj[key].customName = key;

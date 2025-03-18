@@ -11,7 +11,7 @@ window.addEventListener("message", (e) => {
       setZoom("zoomOut", e.data.value);
       break;
     case "showObject": {
-      const object = bodyModel.children.find(
+      let object = bodyModel.children.find(
         (child) => child.name && child.name.includes(e.data.value)
       );
       if (object) {

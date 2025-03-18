@@ -3,7 +3,7 @@
 var p; // shortcut to reference prototypes
 var lib={};var ss={};var img={};
 lib.ssMetadata = [
-		{name:"flash_atlas_", frames: [[2570,1699,690,785],[3262,1699,690,785],[3954,1699,690,785],[6144,1870,690,785],[6472,0,943,933],[6472,935,943,933],[0,1082,943,933],[945,1082,943,933],[1890,1082,1416,615],[3308,1082,1416,615],[4726,1686,1416,615],[1476,3092,339,426],[1817,3092,339,426],[2158,3092,339,426],[5976,3098,339,426],[8097,0,72,72],[8097,74,72,72],[0,0,1920,1080],[3471,3064,461,314],[5067,3032,495,348],[3007,3064,462,314],[6956,3023,496,348],[4726,1082,870,567],[0,2017,870,567],[872,2017,870,567],[4646,2303,870,567],[7417,0,678,813],[7417,815,678,813],[7417,1630,678,813],[1890,1699,678,813],[7454,3370,321,316],[7777,3370,321,316],[6792,3373,321,316],[7115,3373,321,316],[5598,1082,133,153],[5598,1237,133,153],[5598,1392,133,153],[6144,1686,133,153],[1004,3062,470,311],[502,3062,500,344],[2535,3064,470,311],[7454,3023,500,345],[4152,2486,469,439],[502,2586,500,474],[6040,2657,469,439],[1004,2586,500,474],[7399,2445,789,576],[2570,2486,789,576],[3361,2486,789,576],[1744,2514,789,576],[3934,3294,438,236],[6317,3223,473,272],[0,3287,440,236],[4564,3274,473,272],[4152,2927,410,365],[4623,2872,442,400],[5564,3032,410,365],[6511,2821,443,400],[1922,0,1920,1080],[3844,0,1920,1080],[4374,3294,112,804],[1004,3375,112,804],[1118,3375,112,804],[1232,3375,112,804],[5766,0,704,1684],[5518,2303,520,727],[0,2586,500,699],[6836,1870,561,949]]}
+		{name:"flash_atlas_", frames: [[3516,2017,690,785],[4208,2017,690,785],[4900,2017,690,785],[7088,2445,690,785],[6472,0,943,933],[6472,935,943,933],[0,1082,943,933],[945,1082,943,933],[1890,1082,943,933],[2835,1082,943,933],[3780,1082,943,933],[4725,1082,943,933],[5670,1870,1416,615],[0,2017,1416,615],[1418,2017,1416,615],[7835,3179,339,426],[2971,3410,339,426],[7835,3607,339,426],[6805,3634,339,426],[8097,0,72,72],[8097,74,72,72],[0,0,1920,1080],[6342,3634,461,314],[4407,3382,495,348],[5878,3634,462,314],[3407,3382,496,348],[6155,2487,870,567],[0,2634,870,567],[872,2634,870,567],[1744,2634,870,567],[7417,0,678,813],[7417,815,678,813],[7417,1630,678,813],[2836,2017,678,813],[7088,1870,321,316],[2470,3723,321,316],[4904,3728,321,316],[3905,3729,321,316],[5670,1686,133,153],[5805,1686,133,153],[5940,1686,133,153],[6075,1686,133,153],[2499,3410,470,311],[4904,3382,500,344],[5406,3438,470,311],[3905,3382,500,345],[5098,2804,469,439],[1024,3203,500,474],[2028,3203,469,439],[1526,3203,500,474],[3516,2804,789,576],[4307,2804,789,576],[2616,2832,789,576],[6155,3056,789,576],[1499,3679,438,236],[7146,3634,473,272],[2028,3644,440,236],[1024,3679,473,272],[7780,2445,410,365],[7391,3232,442,400],[7780,2812,410,365],[6946,3232,443,400],[1922,0,1920,1080],[3844,0,1920,1080],[7621,3634,112,804],[2793,3723,112,804],[5227,3728,112,804],[4228,3729,112,804],[5766,0,704,1684],[0,3203,520,727],[522,3203,500,699],[5592,2487,561,949]]}
 ];
 
 
@@ -39,450 +39,478 @@ lib.ssMetadata = [
 
 
 
-(lib.大腸_正面 = function() {
+(lib.大腸2_正面 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(4);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.大腸_正面_發光 = function() {
+(lib.大腸2_正面_發光 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(5);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.大腸_背面png複製 = function() {
+(lib.大腸2_背面 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(6);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.大腸_背面_發光 = function() {
+(lib.大腸2_背面_發光 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(7);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.唾腺_正面 = function() {
+(lib.大腸_正面 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(8);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.唾腺_反面 = function() {
+(lib.大腸_正面_發光 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(9);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.唾腺_反面_發光 = function() {
+(lib.大腸_背面png複製 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(10);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.脾臟_正面 = function() {
+(lib.大腸_背面_發光 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(11);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.脾臟_正面_發光 = function() {
+(lib.唾腺_正面 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(12);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.脾臟_背面 = function() {
+(lib.唾腺_反面 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(13);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.脾臟_背面_發光 = function() {
+(lib.唾腺_反面_發光 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(14);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.Grid5inchLines = function() {
+(lib.脾臟_正面 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(15);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.Grid5inchLines_1 = function() {
+(lib.脾臟_正面_發光 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(16);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.器官3d教學修改_03 = function() {
+(lib.脾臟_背面 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(17);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.橫膈膜_正面 = function() {
+(lib.脾臟_背面_發光 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(18);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.橫膈膜_正光 = function() {
+(lib.Grid5inchLines = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(19);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.橫膈膜_背面 = function() {
+(lib.Grid5inchLines_1 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(20);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.橫膈膜_背光 = function() {
+(lib.器官3d教學修改_03 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(21);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.腎_正面 = function() {
+(lib.橫膈膜_正面 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(22);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.腎_正面_發光 = function() {
+(lib.橫膈膜_正光 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(23);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.腎_背面 = function() {
+(lib.橫膈膜_背面 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(24);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.腎_背面_發光 = function() {
+(lib.橫膈膜_背光 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(25);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.口腔_正面 = function() {
+(lib.腎_正面 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(26);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.口腔_正光 = function() {
+(lib.腎_正面_發光 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(27);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.口腔_背面 = function() {
+(lib.腎_背面 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(28);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.口腔_背光 = function() {
+(lib.腎_背面_發光 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(29);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.盲腸_正面 = function() {
+(lib.口腔_正面 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(30);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.盲腸_正面_發光 = function() {
+(lib.口腔_正光 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(31);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.盲腸_背面 = function() {
+(lib.口腔_背面 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(32);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.盲腸_背面_發光 = function() {
+(lib.口腔_背光 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(33);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.肛門_正面 = function() {
+(lib.盲腸_正面 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(34);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.肛門_正面_發光 = function() {
+(lib.盲腸_正面_發光 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(35);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.肛門_背面 = function() {
+(lib.盲腸_背面 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(36);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.肛門_背面_發光 = function() {
+(lib.盲腸_背面_發光 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(37);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.肝_正面 = function() {
+(lib.肛門_正面 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(38);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.肝_正光 = function() {
+(lib.肛門_正面_發光 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(39);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.肝_背面 = function() {
+(lib.肛門_背面 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(40);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.肝_背光 = function() {
+(lib.肛門_背面_發光 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(41);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.肺_正面 = function() {
+(lib.肝_正面 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(42);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.肺_正光 = function() {
+(lib.肝_正光 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(43);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.肺_背面 = function() {
+(lib.肝_背面 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(44);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.肺_背光 = function() {
+(lib.肝_背光 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(45);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.胃_正面png複製 = function() {
+(lib.肺_正面 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(46);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.胃_正面_發光 = function() {
+(lib.肺_正光 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(47);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.胃_背面png複製 = function() {
+(lib.肺_背面 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(48);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.胃_背面_發光 = function() {
+(lib.肺_背光 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(49);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.胰臟_正面 = function() {
+(lib.胃_正面png複製 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(50);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.胰臟_正光 = function() {
+(lib.胃_正面_發光 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(51);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.胰臟_背面 = function() {
+(lib.胃_背面png複製 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(52);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.胰臟_背光 = function() {
+(lib.胃_背面_發光 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(53);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.膽_正面 = function() {
+(lib.胰臟_正面 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(54);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.膽_正光 = function() {
+(lib.胰臟_正光 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(55);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.膽_背面 = function() {
+(lib.胰臟_背面 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(56);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.膽_背光 = function() {
+(lib.胰臟_背光 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(57);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.身體男_正面 = function() {
+(lib.膽_正面 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(58);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.身體男_背面 = function() {
+(lib.膽_正光 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(59);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.食道_正面 = function() {
+(lib.膽_背面 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(60);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.食道_正面_發光 = function() {
+(lib.膽_背光 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(61);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.食道_背面 = function() {
+(lib.身體男_正面 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(62);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.食道_背面_發光 = function() {
+(lib.身體男_背面 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(63);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.點陣圖1 = function() {
+(lib.食道_正面 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(64);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.點陣圖1複製 = function() {
+(lib.食道_正面_發光 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(65);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.點陣圖1複製2 = function() {
+(lib.食道_背面 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(66);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.點陣圖2 = function() {
+(lib.食道_背面_發光 = function() {
 	this.initialize(ss["flash_atlas_"]);
 	this.gotoAndStop(67);
+}).prototype = p = new cjs.Sprite();
+
+
+
+(lib.點陣圖1 = function() {
+	this.initialize(ss["flash_atlas_"]);
+	this.gotoAndStop(68);
+}).prototype = p = new cjs.Sprite();
+
+
+
+(lib.點陣圖1複製 = function() {
+	this.initialize(ss["flash_atlas_"]);
+	this.gotoAndStop(69);
+}).prototype = p = new cjs.Sprite();
+
+
+
+(lib.點陣圖1複製2 = function() {
+	this.initialize(ss["flash_atlas_"]);
+	this.gotoAndStop(70);
+}).prototype = p = new cjs.Sprite();
+
+
+
+(lib.點陣圖2 = function() {
+	this.initialize(ss["flash_atlas_"]);
+	this.gotoAndStop(71);
 }).prototype = p = new cjs.Sprite();
 // helper functions:
 
@@ -1285,6 +1313,42 @@ p.nominalBounds = new cjs.Rectangle(-96,-94,177.6,175.7);
 p.nominalBounds = new cjs.Rectangle(-97,-96,183,181);
 
 
+(lib.大腸盲腸反 = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{});
+
+	// 圖層_1
+	this.instance = new lib.大腸2_背面();
+	this.instance.setTransform(81.55,-94,0.1883,0.1883,0,0,180);
+
+	this.instance_1 = new lib.大腸2_背面_發光();
+	this.instance_1.setTransform(81.55,-94,0.1883,0.1883,0,0,180);
+
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.instance}]}).to({state:[{t:this.instance_1}]},1).wait(1));
+
+	this._renderFirstFrame();
+
+}).prototype = p = new cjs.MovieClip();
+p.nominalBounds = new cjs.Rectangle(-96,-94,177.6,175.7);
+
+
+(lib.大腸盲腸正 = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{});
+
+	// 圖層_1
+	this.instance = new lib.大腸2_正面();
+	this.instance.setTransform(85.95,-96,0.194,0.194,0,0,180);
+
+	this.instance_1 = new lib.大腸2_正面_發光();
+	this.instance_1.setTransform(85.95,-96,0.194,0.194,0,0,180);
+
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.instance}]}).to({state:[{t:this.instance_1}]},1).wait(1));
+
+	this._renderFirstFrame();
+
+}).prototype = p = new cjs.MovieClip();
+p.nominalBounds = new cjs.Rectangle(-97,-96,183,181);
+
+
 (lib.小腸反 = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
@@ -1591,7 +1655,7 @@ p.nominalBounds = new cjs.Rectangle(-925.8,-790.9,1922,1095);
 	this.gallbladder.name = "gallbladder";
 	this.gallbladder.setTransform(-22.65,-208.6,0.0752,0.0752,0,0,0,0,0.7);
 
-	this.largeIntestine = new lib.大腸正();
+	this.largeIntestine = new lib.大腸盲腸正();
 	this.largeIntestine.name = "largeIntestine";
 	this.largeIntestine.setTransform(-0.1,-86.25,0.9696,0.9696);
 
@@ -1651,7 +1715,7 @@ p.nominalBounds = new cjs.Rectangle(-925.8,-790.9,1922,1095);
 	this.pancreas_1.name = "pancreas_1";
 	this.pancreas_1.setTransform(-55.5,-181.95,0.9696,0.9696);
 
-	this.largeIntestine_1 = new lib.大腸反();
+	this.largeIntestine_1 = new lib.大腸盲腸反();
 	this.largeIntestine_1.name = "largeIntestine_1";
 	this.largeIntestine_1.setTransform(0.45,-85.7,0.9696,0.9696);
 
@@ -1769,11 +1833,11 @@ p.nominalBounds = new cjs.Rectangle(-925.8,-790.9,1922,1095);
 
 	this.shape_5 = new cjs.Shape();
 	this.shape_5.graphics.lf(["#6798AD","#5E83B2"],[0,1],-157.1,0,157.2,0).s().p("A1uHgQhKAAg1g1Qg1g1AAhLIAApVQAAhLA1g1QA1g1BKAAMArcAAAQBLAAA1A1QA1A1AABLIAAJVQAABLg1A1Qg1A1hLAAg");
-	this.shape_5.setTransform(1048.7285,77.5813,0.7951,0.7948);
+	this.shape_5.setTransform(1048.7261,77.5798,0.7951,0.7948);
 
 	this.shape_6 = new cjs.Shape();
 	this.shape_6.graphics.f("#5378A0").s().p("A1uHfQhKAAg1g1Qg1g0AAhLIAApVQAAhKA1g1QA1g1BKAAMArcAAAQBLAAA1A1QA1A1AABKIAAJVQAABLg1A0Qg1A1hLAAg");
-	this.shape_6.setTransform(1048.7285,81.3368,0.7951,0.7948);
+	this.shape_6.setTransform(1048.7261,81.3351,0.7951,0.7948);
 
 	this.instance = new lib.點陣圖2();
 	this.instance.setTransform(852,67,0.7164,0.6694);
@@ -1796,7 +1860,7 @@ p.nominalBounds = new cjs.Rectangle(-925.8,-790.9,1922,1095);
 	this.shape_7.setTransform(1112.05,86.9);
 
 	this.shape_8 = new cjs.Shape();
-	this.shape_8.graphics.f("#FFFFFF").s().p("AAeCfIgKgiIA1ACQAUAAAHgEQAHgEACgHQADgIAEgmQAEgmABgeIiOAAIAth8IgoAAIAAghIC1AAIAAAhIhoAAIghBaICAAAQgBAtgEAvQgDAvgEANQgEANgHAKQgIAKgNAGQgMAFgUAAIgygBgAikBkQAagHAdgLIAAjHIgwAAIAAghICBAAIAAAhIgvAAIAAC4QAWgIAlgRIADAhQhNAlhDAWg");
+	this.shape_8.graphics.f("#FFFFFF").s().p("AAeCfIgKgiIA1ACQAUAAAHgEQAHgEACgHQADgIAEgmQAEgmABgeIiOAAIAth8IgoAAIAAghIC1AAIAAAhIhoAAIghBaICAAAQgBAtgEAvQgEAvgDANQgEANgHAKQgIAKgNAGQgMAFgUAAIgygBgAikBkQAagHAdgLIAAjHIgwAAIAAghICBAAIAAAhIgvAAIAAC4QAWgIAlgRIADAhQhNAlhDAWg");
 	this.shape_8.setTransform(1071.575,87.375);
 
 	this.shape_9 = new cjs.Shape();
@@ -1804,19 +1868,19 @@ p.nominalBounds = new cjs.Rectangle(-925.8,-790.9,1922,1095);
 	this.shape_9.setTransform(1031.275,86.675);
 
 	this.shape_10 = new cjs.Shape();
-	this.shape_10.graphics.f("#FFFFFF").s().p("ABqChIAAgSIg5AAIAAASIghAAIAAh0IA/AAQgngZgQgXIgtAAQgYAcgmAUIBEAAIAAB0IggAAIAAgSIg6AAIAAASIggAAIAAhaQgGADgHABIgRgcQA8gUAngeIhdAAIAAgdIB8AAQAHgKAIgPIAiAEQgEAJgIAMIBRAAQgJgHgMgGIAbgPQAQAIAMALIgPAJIA8AAIAAAdIheAAQAlAiBBANIgOAfIgPgEIAABagAAxBxIA5AAIAAgoIg5AAgAhpBxIA6AAIAAgoIg6AAgAAPg/IAAhhIB+AAIAABhgAAwhcIA9AAIAAgnIg9AAgAiMg/IAAhhIB5AAIAABhgAhshcIA5AAIAAgnIg5AAg");
+	this.shape_10.graphics.f("#FFFFFF").s().p("ABqChIAAgSIg5AAIAAASIghAAIAAh0IA/AAQgngZgQgXIgtAAQgYAcgmAUIBEAAIAAB0IggAAIAAgSIg6AAIAAASIggAAIAAhaQgGADgHABIgRgcQA8gUAngeIhdAAIAAgdIB8AAQAHgKAIgPIAiAEQgEAJgIAMIBRAAQgJgHgMgGIAbgPQAQAIALALIgOAJIA8AAIAAAdIheAAQAlAiBBANIgOAfIgPgEIAABagAAxBxIA5AAIAAgoIg5AAgAhpBxIA6AAIAAgoIg6AAgAAPg/IAAhhIB+AAIAABhgAAwhcIA9AAIAAgnIg9AAgAiMg/IAAhhIB5AAIAABhgAhshcIA5AAIAAgnIg5AAg");
 	this.shape_10.setTransform(991.025,87.275);
 
 	this.shape_11 = new cjs.Shape();
 	this.shape_11.graphics.lf(["#6798AD","#5E83B2"],[0,1],-157.1,0,157.2,0).s().p("A1uHgQhKAAg1g1Qg1g1AAhLIAApVQAAhLA1g1QA1g1BKAAMArcAAAQBLAAA1A1QA1A1AABLIAAJVQAABLg1A1Qg1A1hLAAg");
-	this.shape_11.setTransform(1048.6877,86.0747,0.7948,0.7947);
+	this.shape_11.setTransform(1048.6853,86.0732,0.7948,0.7946);
 
 	this.shape_12 = new cjs.Shape();
 	this.shape_12.graphics.f("#5378A0").s().p("A1uHfQhKAAg1g1Qg1g0AAhLIAApVQAAhKA1g1QA1g1BKAAMArcAAAQBLAAA1A1QA1A1AABKIAAJVQAABLg1A0Qg1A1hLAAg");
-	this.shape_12.setTransform(1048.6877,89.8295,0.7948,0.7947);
+	this.shape_12.setTransform(1048.6853,89.8279,0.7948,0.7946);
 
 	this.shape_13 = new cjs.Shape();
-	var sprImg_shape_13 = cjs.SpriteSheetUtils.extractFrame(ss["flash_atlas_"],17);
+	var sprImg_shape_13 = cjs.SpriteSheetUtils.extractFrame(ss["flash_atlas_"],21);
 	sprImg_shape_13.onload = function(){
 		this.shape_13.graphics.bf(sprImg_shape_13, null, new cjs.Matrix2D(0.667,0,0,0.667,-640,-360)).s().p("Ehj/A4QMAAAhwfMDH/AAAMAAABwfg")
 	}.bind(this);
@@ -1890,7 +1954,7 @@ p.nominalBounds = new cjs.Rectangle(-925.8,-790.9,1922,1095);
 
 	// 圖層_3
 	this.shape = new cjs.Shape();
-	var sprImg_shape = cjs.SpriteSheetUtils.extractFrame(ss["flash_atlas_"],17);
+	var sprImg_shape = cjs.SpriteSheetUtils.extractFrame(ss["flash_atlas_"],21);
 	sprImg_shape.onload = function(){
 		this.shape.graphics.bf(sprImg_shape, null, new cjs.Matrix2D(0.667,0,0,0.897,-640,-484.5)).s().p("Ehj/BLrMAAAiXVMDH/AAAMAAACXVg")
 	}.bind(this);

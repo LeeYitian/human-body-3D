@@ -57,12 +57,12 @@ const OrganGame = () => {
       {selectedGame && (
         <>
           <StyledBtn
-            style={{ position: "absolute", bottom: "10%", left: "1%" }}
+            style={{ position: "absolute", bottom: "23%", left: "1%" }}
             $imgSrc="./assets/prevPageBtn.png"
             onClick={() => setSelectedGame(null)}
           />
           <StyledBtn
-            style={{ position: "absolute", bottom: "23%", left: "1%" }}
+            style={{ position: "absolute", bottom: "10%", left: "1%" }}
             $imgSrc="./assets/closeGame.png"
             onClick={() => goto(PATH.Organ)}
           />
