@@ -15,55 +15,91 @@ window.addEventListener("message", (e) => {
         (child) => child.name && child.name.includes(e.data.value)
       );
       if (object) {
-        if (e.data.value === "stomach") {
-          const gland = bodyModel.children.find(
-            (child) => child.name && child.name.includes("gastricGland")
-          );
-          if (gland && !gland.visible) {
-            object.alpha = 0.5;
-            gland.visible = true;
-          } else if (gland && gland.visible) {
-            object.alpha = 1;
-            gland.visible = false;
-          }
-        } else if (e.data.value === "largeIntestine") {
-          const gland = bodyModel.children.find(
-            (child) => child.name && child.name.includes("intestinalGland")
-          );
-          if (gland && !gland.visible) {
-            object.alpha = 0.5;
-            gland.visible = true;
-          } else if (gland && gland.visible) {
-            object.alpha = 1;
-            gland.visible = false;
-          }
+        if (
+          e.data.value === "stomach" &&
+          !hideOrgans.includes("gastricGland")
+        ) {
+          object.alpha = object.alpha === 0.5 ? 1 : 0.5;
+        } else if (
+          e.data.value === "largeIntestine" &&
+          !hideOrgans.includes("intestinalGland")
+        ) {
+          object.alpha = object.alpha === 0.5 ? 1 : 0.5;
         } else if (e.data.value === "gastricGland") {
+          object.visible = !object.visible;
           const organ = bodyModel.children.find(
             (child) => child.name && child.name.includes("stomach")
           );
-          if (organ && organ.visible) {
-            organ.alpha = 1;
-            organ.visible = false;
-          } else if (organ && !organ.visible) {
-            organ.alpha = 0.5;
+          organ.alpha = hideOrgans.includes("stomach") ? 0.5 : 1;
+          if (object.visible && hideOrgans.includes("stomach")) {
             organ.visible = true;
+          } else {
+            organ.visible = !hideOrgans.includes("stomach");
           }
-          object.visible = !object.visible;
         } else if (e.data.value === "intestinalGland") {
+          object.visible = !object.visible;
           const organ = bodyModel.children.find(
             (child) => child.name && child.name.includes("largeIntestine")
           );
-          if (organ && organ.visible) {
-            organ.alpha = 1;
-            organ.visible = false;
-          } else if (organ && !organ.visible) {
-            organ.alpha = 0.5;
+          organ.alpha = hideOrgans.includes("largeIntestine") ? 0.5 : 1;
+          if (object.visible && hideOrgans.includes("largeIntestine")) {
             organ.visible = true;
+          } else {
+            organ.visible = !hideOrgans.includes("largeIntestine");
           }
-          object.visible = !object.visible;
         } else {
           object.visible = !object.visible;
         }
+
+        // if (e.data.value === "stomach") {
+        //   const gland = bodyModel.children.find(
+        //     (child) => child.name && child.name.includes("gastricGland")
+        //   );
+        //   if (gland && !gland.visible) {
+        //     object.alpha = 0.5;
+        //     gland.visible = true;
+        //   } else if (gland && gland.visible) {
+        //     object.alpha = 1;
+        //     gland.visible = false;
+        //   }
+        // } else if (e.data.value === "largeIntestine") {
+        //   const gland = bodyModel.children.find(
+        //     (child) => child.name && child.name.includes("intestinalGland")
+        //   );
+        //   if (gland && !gland.visible) {
+        //     object.alpha = 0.5;
+        //     gland.visible = true;
+        //   } else if (gland && gland.visible) {
+        //     object.alpha = 1;
+        //     gland.visible = false;
+        //   }
+        // } else if (e.data.value === "gastricGland") {
+        //   const organ = bodyModel.children.find(
+        //     (child) => child.name && child.name.includes("stomach")
+        //   );
+        //   if (organ && organ.visible) {
+        //     organ.alpha = 1;
+        //     organ.visible = false;
+        //   } else if (organ && !organ.visible) {
+        //     organ.alpha = 0.5;
+        //     organ.visible = true;
+        //   }
+        //   object.visible = !object.visible;
+        // } else if (e.data.value === "intestinalGland") {
+        //   const organ = bodyModel.children.find(
+        //     (child) => child.name && child.name.includes("largeIntestine")
+        //   );
+        //   if (organ && organ.visible) {
+        //     organ.alpha = 1;
+        //     organ.visible = false;
+        //   } else if (organ && !organ.visible) {
+        //     organ.alpha = 0.5;
+        //     organ.visible = true;
+        //   }
+        //   object.visible = !object.visible;
+        // } else {
+        //   object.visible = !object.visible;
+        // }
 
         if (!object.visible || object.alpha !== 1) {
           hideOrgans.push(object.name.split("_")[0]);

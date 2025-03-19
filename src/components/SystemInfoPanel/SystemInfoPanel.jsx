@@ -75,36 +75,50 @@ const SystemInfoPanel = () => {
         tempObj = [...objects[organ], ...objects["cecum"]];
       }
 
-      if (organ === "stomach") {
-        const gland = objects["gastricGland"];
-        if (gland.length && glandOrgans.gastricGland) {
-          gland.forEach((g) => {
-            g.visible = !g.visible;
-          });
-        }
-      } else if (organ === "largeIntestine") {
-        const gland = objects["intestinalGland"];
-        if (gland && glandOrgans.intestinalGland) {
-          gland.forEach((g) => {
-            g.visible = !g.visible;
-          });
-        }
+      if (organ === "stomach" && !glandOrgans.gastricGland) {
+        tempObj = [...tempObj, ...objects["alphaStomach"]];
+      } else if (organ === "largeIntestine" && !glandOrgans.intestinalGland) {
+        tempObj = [...tempObj, ...objects["alphaLargeIntestine"]];
       } else if (organ === "gastricGland") {
-        if (tractOrgans.stomach) {
-          tempObj = [...objects["stomach"], ...objects["alphaStomach"]];
-        } else {
-          tempObj = [...objects["alphaStomach"], ...tempObj];
+        if (!tractOrgans.stomach) {
+          tempObj = [...tempObj, ...objects["alphaStomach"]];
         }
       } else if (organ === "intestinalGland") {
-        if (tractOrgans.largeIntestine) {
-          tempObj = [
-            ...objects["largeIntestine"],
-            ...objects["alphaLargeIntestine"],
-          ];
-        } else {
-          tempObj = [...objects["alphaLargeIntestine"], ...tempObj];
+        if (!tractOrgans.largeIntestine) {
+          tempObj = [...tempObj, ...objects["alphaLargeIntestine"]];
         }
       }
+
+      // if (organ === "stomach") {
+      //   const gland = objects["gastricGland"];
+      //   if (gland.length && glandOrgans.gastricGland) {
+      //     gland.forEach((g) => {
+      //       g.visible = !g.visible;
+      //     });
+      //   }
+      // } else if (organ === "largeIntestine") {
+      //   const gland = objects["intestinalGland"];
+      //   if (gland && glandOrgans.intestinalGland) {
+      //     gland.forEach((g) => {
+      //       g.visible = !g.visible;
+      //     });
+      //   }
+      // } else if (organ === "gastricGland") {
+      //   if (tractOrgans.stomach) {
+      //     tempObj = [...objects["stomach"], ...objects["alphaStomach"]];
+      //   } else {
+      //     tempObj = [...objects["alphaStomach"], ...tempObj];
+      //   }
+      // } else if (organ === "intestinalGland") {
+      //   if (tractOrgans.largeIntestine) {
+      //     tempObj = [
+      //       ...objects["largeIntestine"],
+      //       ...objects["alphaLargeIntestine"],
+      //     ];
+      //   } else {
+      //     tempObj = [...objects["alphaLargeIntestine"], ...tempObj];
+      //   }
+      // }
 
       if (tempObj && tempObj.length) {
         tempObj.forEach((obj) => (obj.visible = !obj.visible));
@@ -137,7 +151,7 @@ const SystemInfoPanel = () => {
 
     if (mode === MODE["3D"]) {
       Object.keys(objects)
-        .filter((key) => Object.keys(organs).includes(key))
+        .filter((key) => Object.keys(organs).includes(key) || key === "cecum")
         .forEach((key) => {
           objects[key].forEach((i) => (i.visible = shouldSelectAll));
         });

@@ -119,11 +119,12 @@ const ThreeJSCanvas = ({ mode, threejsRef }) => {
               child.name === "Female_Lymphatic_V05_group" ||
               (child.name === "Male_Anatomy_Pack_V05" &&
                 child.children[0].name ===
-                  "Urinary_ReproductiveUrinary_Reproductive") ||
-              child.name === "Text001" ||
-              child.name === "Text002" ||
-              child.name === "Box001" ||
-              child.name === "Box002"
+                  "Urinary_ReproductiveUrinary_Reproductive")
+              //     ||
+              // child.name === "Text001" ||
+              // child.name === "Text002" ||
+              // child.name === "Box001" ||
+              // child.name === "Box002"
             ) {
               child.visible = false;
               child.children.forEach((c) => {

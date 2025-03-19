@@ -16,7 +16,7 @@ export const StyledTitle = styled(BGDiv)`
   width: 150%;
   aspect-ratio: 356/89;
   position: absolute;
-  top: 0;
+  top: -1%;
   left: -38%;
 `;
 
